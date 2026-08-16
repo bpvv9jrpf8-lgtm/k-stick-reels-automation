@@ -1,0 +1,39 @@
+{
+  "topic": "K-Stick and the Pencil That Draws Back",
+  "hook_text": "K-Stick just wanted to draw one tiny smile...",
+  "background": "assets/backgrounds/office.png",
+  "scenes": [
+    {
+      "scene_number": 1,
+      "duration_seconds": 3,
+      "story_text": "K-Stick sits at the desk and proudly draws a tiny smiley face on the paper.",
+      "character_asset": "assets/expressions/k_stick_happy.png",
+      "background_asset": "assets/backgrounds/office.png",
+      "expression": "happy"
+    },
+    {
+      "scene_number": 2,
+      "duration_seconds": 3,
+      "story_text": "The pencil suddenly moves by itself and draws a giant silly mustache on K-Stick's face.",
+      "character_asset": "assets/expressions/k_stick_happy.png",
+      "background_asset": "assets/backgrounds/office.png",
+      "expression": "happy"
+    },
+    {
+      "scene_number": 3,
+      "duration_seconds": 3,
+      "story_text": "K-Stick drops the pencil and points at it, but the pencil draws a tiny speech bubble saying, \"Your turn!\"",
+      "character_asset": "assets/expressions/k_stick_happy.png",
+      "background_asset": "assets/backgrounds/office.png",
+      "expression": "happy"
+    },
+    {
+      "scene_number": 4,
+      "duration_seconds": 4,
+      "story_text": "K-Stick confidently grabs the pencil and draws a mustache on the pencil instead; the pencil immediately draws a tiny cap on itself, making K-Stick gasp and laugh.",
+      "character_asset": "assets/expressions/k_stick_happy.png",
+      "background_asset": "assets/backgrounds/office.png",
+      "expression": "happy"
+    }
+  ]
+}

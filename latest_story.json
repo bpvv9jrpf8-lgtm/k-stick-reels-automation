@@ -1,23 +1,23 @@
 {
-  "topic": "K-Stick and the Bubble Wrap That Pops Back",
-  "hook_text": "K-Stick finds the most satisfying bubble ever!",
-  "background": "Simple cozy room with a small table and a sheet of bubble wrap",
-  "main_expression": "Huge excited eyes, raised eyebrows, and a determined grin",
-  "main_pose": "Leaning over the table with one finger ready to pop a bubble",
-  "prop": "A sheet of bubble wrap and K-Stick's signature red cap",
-  "scene_1": "K-Stick spots bubble wrap on the table, gasps excitedly, and prepares to pop one bubble.",
-  "scene_2": "Every time his finger gets close, the next bubble pops by itself, making K-Stick chase the popping sound across the sheet.",
-  "scene_3": "K-Stick finally gives up and sits down dramatically, but the last bubble under him pops with a loud cartoon POP.",
-  "twist_ending": "The pop launches his red cap into the air; it lands on the bubble wrap and rapidly pops every bubble while K-Stick watches in amazed silence.",
-  "video_title": "K-Stick vs. The Bubble Wrap!",
-  "facebook_caption": "He only wanted to pop ONE bubble... then his cap took over! 😂",
-  "youtube_description": "K-Stick discovers bubble wrap, but the bubbles seem determined to pop before he can touch them. The final bubble delivers a hilarious surprise!",
+  "topic": "K-Stick and the Pencil That Draws Back",
+  "hook_text": "K-Stick just wanted to draw one tiny smile...",
+  "background": "Simple reusable desk scene with a white sheet of paper and a small cup of pencils",
+  "main_expression": "Excited smile changing to wide-eyed confusion, then proud surprise",
+  "main_pose": "Leaning over the desk while holding a pencil, then quickly hiding behind the paper",
+  "prop": "Yellow pencil and white sheet of paper",
+  "scene_1": "K-Stick sits at the desk and proudly draws a tiny smiley face on the paper.",
+  "scene_2": "The pencil suddenly moves by itself and draws a giant silly mustache on K-Stick's face.",
+  "scene_3": "K-Stick drops the pencil and points at it, but the pencil draws a tiny speech bubble saying, \"Your turn!\"",
+  "twist_ending": "K-Stick confidently grabs the pencil and draws a mustache on the pencil instead; the pencil immediately draws a tiny cap on itself, making K-Stick gasp and laugh.",
+  "video_title": "K-Stick vs. The Drawing Pencil!",
+  "facebook_caption": "K-Stick only wanted a smiley face... but his pencil had artistic opinions! ✏️😂",
+  "youtube_description": "K-Stick discovers a pencil that draws back! Watch his tiny doodle turn into a hilarious mustache battle in just 15 seconds.",
   "hashtags": [
     "#KStick",
     "#StickmanComedy",
     "#FunnyReel",
     "#FamilyFriendly"
   ],
-  "image_prompt": "A clean 2D cartoon frame of K-Stick, a simple black stickman with a round white face, huge expressive eyes, and a bright red cap, leaning over a small table covered with bubble wrap in a cozy minimal room. Family-friendly comedy style, bold clean outlines, simple reusable background, no text, no copyrighted characters.",
-  "motion_prompt": "15-second fast-paced 2D stickman animation. K-Stick notices bubble wrap and excitedly reaches for one bubble. Each time his finger gets close, a different bubble pops slightly ahead with tiny cartoon squash-and-stretch reactions. He chases the popping bubbles faster, then sighs and sits down. The bubble beneath him pops and launches his red cap upward. The cap lands on the bubble wrap and rapidly pops the entire sheet. End on K-Stick frozen with wide amazed eyes as a small pop sound finishes the gag."
+  "image_prompt": "A clean minimalist 2D cartoon frame featuring K-Stick, a simple black stickman with a round white face, big expressive eyes, and a signature red cap, seated at a small desk with a white sheet of paper and yellow pencil, the pencil drawing a giant silly mustache on his face, bright friendly colors, bold clean outlines, reusable simple background, family-friendly comedy, no copyrighted characters, vertical video composition",
+  "motion_prompt": "15-second fast-paced 2D stickman animation: K-Stick sits at a desk and draws a tiny smiley face, the yellow pencil wiggles and suddenly draws a huge mustache on his face, K-Stick reacts with wide eyes and ducks behind the paper, the pencil draws a speech bubble saying 'Your turn!', K-Stick grabs it and draws a mustache on the pencil, then the pencil draws a tiny red cap on itself, ending with K-Stick laughing in surprise; use simple squash-and-stretch, quick reaction zooms, light comedic sound effects, and smooth minimal movement"
 }
