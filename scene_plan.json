@@ -1,38 +1,38 @@
 {
-  "topic": "K-Stick and the Pencil That Draws Back",
-  "hook_text": "K-Stick just wanted to draw one tiny smile...",
-  "background": "assets/backgrounds/office.png",
+  "topic": "K-Stick and the Tiny Umbrella That Only Covers His Cap",
+  "hook_text": "Perfect! I am totally protected!",
+  "background": "assets/backgrounds/street.png",
   "scenes": [
     {
       "scene_number": 1,
       "duration_seconds": 3,
-      "story_text": "K-Stick sits at the desk and proudly draws a tiny smiley face on the paper.",
+      "story_text": "K-Stick sees raindrops and proudly opens a tiny umbrella, standing underneath it.",
       "character_asset": "assets/expressions/k_stick_happy.png",
-      "background_asset": "assets/backgrounds/office.png",
+      "background_asset": "assets/backgrounds/street.png",
       "expression": "happy"
     },
     {
       "scene_number": 2,
       "duration_seconds": 3,
-      "story_text": "The pencil suddenly moves by itself and draws a giant silly mustache on K-Stick's face.",
+      "story_text": "The umbrella covers only his red cap while the rest of his body gets lightly sprinkled. K-Stick keeps smiling and gives a confident thumbs-up.",
       "character_asset": "assets/expressions/k_stick_happy.png",
-      "background_asset": "assets/backgrounds/office.png",
+      "background_asset": "assets/backgrounds/street.png",
       "expression": "happy"
     },
     {
       "scene_number": 3,
       "duration_seconds": 3,
-      "story_text": "K-Stick drops the pencil and points at it, but the pencil draws a tiny speech bubble saying, \"Your turn!\"",
+      "story_text": "He notices his cap is completely dry and proudly points at it like a weather expert.",
       "character_asset": "assets/expressions/k_stick_happy.png",
-      "background_asset": "assets/backgrounds/office.png",
+      "background_asset": "assets/backgrounds/street.png",
       "expression": "happy"
     },
     {
       "scene_number": 4,
       "duration_seconds": 4,
-      "story_text": "K-Stick confidently grabs the pencil and draws a mustache on the pencil instead; the pencil immediately draws a tiny cap on itself, making K-Stick gasp and laugh.",
+      "story_text": "A single raindrop lands on his nose, and the tiny umbrella instantly flips inside out. K-Stick calmly puts the umbrella on his cap like a hat and says, \"Still protected!\"",
       "character_asset": "assets/expressions/k_stick_happy.png",
-      "background_asset": "assets/backgrounds/office.png",
+      "background_asset": "assets/backgrounds/street.png",
       "expression": "happy"
     }
   ]
