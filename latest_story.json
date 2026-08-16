@@ -1,23 +1,23 @@
 {
-  "topic": "The Sticky Note That Stuck Back",
-  "hook_text": "K-Stick writes one tiny reminder...",
-  "background": "Simple home office with a desk, chair, and blank wall",
-  "main_expression": "Confident smile turning into wide-eyed confusion, then embarrassed grin",
-  "main_pose": "Standing beside the desk, pointing proudly at the sticky note, then twisting around to inspect his back",
-  "prop": "Bright yellow sticky note and pencil",
-  "scene_1": "0-4 seconds: K-Stick writes “DON’T FORGET THIS NOTE” on a sticky note and places it on the desk with a proud thumbs-up.",
-  "scene_2": "4-9 seconds: The note suddenly sticks to his finger. He shakes his hand, but it flies onto his face. He peels it off and puts it back on the desk, looking relieved.",
-  "scene_3": "9-12 seconds: K-Stick walks away confidently, but the sticky note is secretly stuck to the back of his shirt. He keeps pointing at the desk as if he solved the problem.",
-  "twist_ending": "12-15 seconds: He turns back and sees the note on his back. It now reads “CHECK YOUR BACK.” K-Stick slowly gives the camera an embarrassed thumbs-up.",
-  "video_title": "The Sticky Note Won",
-  "facebook_caption": "K-Stick tried to stay organized... but the sticky note had other plans! 😂",
-  "youtube_description": "K-Stick writes a simple reminder, but his sticky note refuses to stay put. Watch the tiny office problem turn into a perfectly silly surprise ending.",
+  "topic": "K-Stick and the Overconfident Automatic Hand Dryer",
+  "hook_text": "K-Stick discovers a hand dryer with a mind of its own!",
+  "background": "Simple public restroom with a sink, wall-mounted hand dryer, and clean tiled wall",
+  "main_expression": "Confident grin changing into wide-eyed confusion, then an embarrassed smile",
+  "main_pose": "Standing with both hands under the dryer, leaning back dramatically, then giving a tiny awkward wave",
+  "prop": "Wall-mounted automatic hand dryer",
+  "scene_1": "K-Stick washes his hands and proudly places them under the automatic dryer as if presenting a magic trick.",
+  "scene_2": "The dryer blasts air, but only at one hand. K-Stick shifts left and right, trying to catch the invisible air stream.",
+  "scene_3": "He finally positions both hands perfectly, smiles at the camera, and gives a confident thumbs-up.",
+  "twist_ending": "The dryer suddenly stops and blows one tiny puff directly at K-Stick's cap, launching it onto his face. He calmly gives the dryer a thumbs-up anyway.",
+  "video_title": "K-Stick vs. The Hand Dryer",
+  "facebook_caption": "He defeated the hand dryer... until it attacked his cap! 😂",
+  "youtube_description": "K-Stick just wanted dry hands, but the automatic hand dryer had its own goofy plan. A quick, family-friendly stickman comedy reel with a surprise cap flip!",
   "hashtags": [
     "#KStick",
     "#StickmanComedy",
     "#FunnyReel",
     "#FamilyFriendly"
   ],
-  "image_prompt": "A clean 2D minimalist cartoon frame featuring K-Stick, a simple black stickman with a round white face, big expressive eyes, and a signature red cap, in a small home office with a desk, chair, blank wall, yellow sticky note, and pencil. Bold clear outlines, simple reusable background, bright friendly colors, expressive comedy pose, no copyrighted characters, no text except the sticky note.",
-  "motion_prompt": "Create a 15-second fast-paced 2D stickman animation. Start with K-Stick confidently writing on a yellow sticky note and placing it on the desk. Animate the note sticking to his finger, flying onto his face, and being peeled off. K-Stick walks away proudly while the note is secretly attached to his back. End with him turning around, reading “CHECK YOUR BACK,” freezing in embarrassment, then giving a slow thumbs-up. Use quick squash-and-stretch, simple pop sound effects, a short comedic pause before the final reaction, and smooth reusable office background animation."
+  "image_prompt": "A simple 2D cartoon frame featuring K-Stick, a black stickman with a round white face, huge expressive eyes, and a signature red cap, standing in a clean minimal public restroom beside a wall-mounted automatic hand dryer. Bright flat colors, thick clean outlines, simple reusable background, playful family-friendly style, no text, no copyrighted characters.",
+  "motion_prompt": "Create a fast 15-second 2D stickman animation with three quick beats: K-Stick washes his hands and confidently places them under the automatic dryer; the air stream moves unpredictably as he shuffles side to side with exaggerated confused eyes; he finally poses proudly, then the dryer stops and sends one tiny puff at his red cap, flipping it over his face. End with K-Stick giving an awkward thumbs-up. Use simple squash-and-stretch, quick comedic timing, light whoosh sounds, and a short pop sound for the cap flip."
 }
