@@ -3,6 +3,9 @@ name: K-Stick Test
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -19,7 +22,21 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run automation test
+      - name: Run automation
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: python main.py
+
+      - name: Save story history
+        run: |
+          git config user.name "k-stick-bot"
+          git config user.email "k-stick-bot@users.noreply.github.com"
+
+          git add used_topics.json latest_story.json
+
+          if git diff --cached --quiet; then
+            echo "No changes to save."
+          else
+            git commit -m "Save K-Stick story history"
+            git push
+          fi
