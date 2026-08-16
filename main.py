@@ -1,14 +1,31 @@
 import os
+from openai import OpenAI
+
+client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
 def main():
-    print("K-Stick automation started successfully.")
+    print("K-Stick automation started.")
 
-    openai_key = os.getenv("OPENAI_API_KEY")
+    response = client.responses.create(
+        model="gpt-5.6-luna",
+        input="""
+Create one original 15-second funny stickman reel idea.
 
-    if openai_key:
-        print("OpenAI API key detected.")
-    else:
-        print("OPENAI_API_KEY is not set yet.")
+Rules:
+- Main character name: K-Stick
+- Simple setup
+- Fast problem
+- Funny twist ending
+- Family-friendly
+- No copyrighted characters
+- Output only:
+  Hook:
+  Story:
+  Ending:
+"""
+    )
+
+    print(response.output_text)
 
 if __name__ == "__main__":
     main()
