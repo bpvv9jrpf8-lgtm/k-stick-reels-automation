@@ -52,6 +52,31 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: python generate_expression.py sleepy
 
+      - name: Generate bedroom background
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python generate_background.py bedroom
+
+      - name: Generate office background
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python generate_background.py office
+
+      - name: Generate classroom background
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python generate_background.py classroom
+
+      - name: Generate kitchen background
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python generate_background.py kitchen
+
+      - name: Generate street background
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python generate_background.py street
+
       - name: Run automation
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -62,11 +87,22 @@ jobs:
           git config user.name "k-stick-bot"
           git config user.email "k-stick-bot@users.noreply.github.com"
 
-          git add used_topics.json latest_story.json assets/character/k_stick_base.png assets/expressions/k_stick_happy.png assets/expressions/k_stick_sad.png assets/expressions/k_stick_angry.png assets/expressions/k_stick_shocked.png assets/expressions/k_stick_sleepy.png
+          git add used_topics.json latest_story.json \
+            assets/character/k_stick_base.png \
+            assets/expressions/k_stick_happy.png \
+            assets/expressions/k_stick_sad.png \
+            assets/expressions/k_stick_angry.png \
+            assets/expressions/k_stick_shocked.png \
+            assets/expressions/k_stick_sleepy.png \
+            assets/backgrounds/bedroom.png \
+            assets/backgrounds/office.png \
+            assets/backgrounds/classroom.png \
+            assets/backgrounds/kitchen.png \
+            assets/backgrounds/street.png
 
           if git diff --cached --quiet; then
             echo "No changes to save."
           else
-            git commit -m "Update K-Stick reusable assets"
+            git commit -m "Update K-Stick reusable assets and backgrounds"
             git push
           fi
