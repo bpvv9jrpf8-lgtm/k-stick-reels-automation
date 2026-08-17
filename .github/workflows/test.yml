@@ -1,4 +1,5 @@
-name: k-stick-reel-final
+name: K-Stick Pose Pack
+
 on:
   workflow_dispatch:
 
@@ -6,7 +7,7 @@ permissions:
   contents: write
 
 jobs:
-  build-reel:
+  create-pose-pack:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,7 +19,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install Python dependencies
+      - name: Install dependencies
         run: pip install -r requirements.txt
 
       - name: Install FFmpeg
@@ -26,45 +27,106 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ffmpeg
 
-      - name: Make transparent K-Stick assets
-        run: python make_transparent.py
+      - name: Generate standing pose
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python generate_pose.py standing
 
-      - name: Generate new K-Stick story
+      - name: Generate sitting pose
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python generate_pose.py sitting
+
+      - name: Generate sleeping pose
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python generate_pose.py sleeping
+
+      - name: Generate walking pose
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python generate_pose.py walking
+
+      - name: Generate running pose
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python generate_pose.py running
+
+      - name: Generate pointing pose
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python generate_pose.py pointing
+
+      - name: Generate phone pose
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python generate_pose.py phone
+
+      - name: Generate working pose
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python generate_pose.py working
+
+      - name: Generate hiding pose
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python generate_pose.py hiding
+
+      - name: Generate falling pose
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python generate_pose.py falling
+
+      - name: Generate confused pose
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python generate_pose.py confused
+
+      - name: Generate celebrating pose
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python generate_pose.py celebrating
+
+      - name: Remove pose backgrounds
+        run: python make_pose_transparent.py
+
+      - name: Generate new story
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: python main.py
 
-      - name: Build scene plan
+      - name: Build intelligent scene plan
         run: python plan_scenes.py
 
-      - name: Generate AI voiceover
+      - name: Generate voiceover
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: python generate_voice.py
 
-      - name: Build reel
+      - name: Build test reel
         run: python build_reel.py
 
-      - name: Upload reel artifact
+      - name: Upload test reel
         uses: actions/upload-artifact@v4
         with:
-          name: k-stick-reel-v3
+          name: k-stick-pose-test
           path: output/k_stick_reel_final.mp4
           retention-days: 7
 
-      - name: Save generated files
+      - name: Save pose library
         run: |
           git config user.name "k-stick-bot"
           git config user.email "k-stick-bot@users.noreply.github.com"
 
-          git add used_topics.json \
+          git add assets/poses_raw/ \
+            assets/poses/ \
+            used_topics.json \
             latest_story.json \
-            scene_plan.json \
-            assets/transparent/
+            scene_plan.json
 
           if git diff --cached --quiet; then
-            echo "No changes to save."
+            echo "No new files to save."
           else
-            git commit -m "Create transparent K-Stick assets"
+            git commit -m "Create reusable K-Stick pose library"
             git push
           fi
