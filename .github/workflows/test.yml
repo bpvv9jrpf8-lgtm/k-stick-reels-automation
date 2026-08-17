@@ -1,4 +1,4 @@
-name: K-Stick Reel V2
+name: K-Stick Reel V3
 
 on:
   workflow_dispatch:
@@ -27,9 +27,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ffmpeg
 
-      # IMPORTANT:
-      # We reuse the existing character, expressions and backgrounds.
-      # They are NOT regenerated on every run.
+      - name: Make transparent K-Stick assets
+        run: python make_transparent.py
 
       - name: Generate new K-Stick story
         env:
@@ -44,26 +43,29 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: python generate_voice.py
 
-      - name: Build 15-second reel
+      - name: Build reel
         run: python build_reel.py
 
       - name: Upload reel artifact
         uses: actions/upload-artifact@v4
         with:
-          name: k-stick-reel-v2
+          name: k-stick-reel-v3
           path: output/k_stick_reel_v2.mp4
           retention-days: 7
 
-      - name: Save successful story history
+      - name: Save generated files
         run: |
           git config user.name "k-stick-bot"
           git config user.email "k-stick-bot@users.noreply.github.com"
 
-          git add used_topics.json latest_story.json scene_plan.json
+          git add used_topics.json \
+            latest_story.json \
+            scene_plan.json \
+            assets/transparent/
 
           if git diff --cached --quiet; then
-            echo "No history changes to save."
+            echo "No changes to save."
           else
-            git commit -m "Save successful K-Stick reel story"
+            git commit -m "Create transparent K-Stick assets"
             git push
           fi
