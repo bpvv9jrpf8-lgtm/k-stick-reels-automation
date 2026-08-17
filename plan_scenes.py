@@ -5,12 +5,13 @@ STORY_FILE = "latest_story.json"
 OUTPUT_FILE = "scene_plan.json"
 
 EXPRESSION_FILES = {
-    "happy": "assets/expressions/k_stick_happy.png",
-    "sad": "assets/expressions/k_stick_sad.png",
-    "angry": "assets/expressions/k_stick_angry.png",
-    "shocked": "assets/expressions/k_stick_shocked.png",
-    "sleepy": "assets/expressions/k_stick_sleepy.png",
+    "happy": "assets/transparent/k_stick_happy_transparent.png",
+    "sad": "assets/transparent/k_stick_sad_transparent.png",
+    "angry": "assets/transparent/k_stick_angry_transparent.png",
+    "shocked": "assets/transparent/k_stick_shocked_transparent.png",
+    "sleepy": "assets/transparent/k_stick_sleepy_transparent.png",
 }
+
 
 BACKGROUND_FILES = {
     "bedroom": "assets/backgrounds/bedroom.png",
