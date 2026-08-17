@@ -1,0 +1,59 @@
+name: K-Stick V2 Animation Test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  render-v2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout V2 branch
+        uses: actions/checkout@v4
+        with:
+          ref: v2-animation
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: v2/package.json
+
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Install V2 dependencies
+        working-directory: v2
+        run: npm install
+
+      - name: Generate character dialogue
+        working-directory: v2
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: npm run audio
+
+      - name: Generate reusable comedy SFX
+        working-directory: v2
+        run: |
+          mkdir -p public/sfx out
+          ffmpeg -y -f lavfi -i "sine=frequency=520:duration=0.22" -af "afade=t=out:st=0.10:d=0.12,volume=0.8" public/sfx/pop.wav
+          ffmpeg -y -f lavfi -i "anoisesrc=color=pink:duration=0.55:amplitude=0.15" -af "highpass=f=500,lowpass=f=6000,afade=t=in:st=0:d=0.06,afade=t=out:st=0.32:d=0.23" public/sfx/whoosh.wav
+          ffmpeg -y -f lavfi -i "sine=frequency=180:duration=0.55" -af "volume=0.55,afade=t=out:st=0.30:d=0.25" public/sfx/record.wav
+          ffmpeg -y -f lavfi -i "sine=frequency=1040:duration=0.38" -af "volume=0.55,afade=t=out:st=0.18:d=0.20" public/sfx/ding.wav
+
+      - name: Render K-Stick V2 MP4
+        working-directory: v2
+        run: npm run render
+
+      - name: Upload V2 video
+        uses: actions/upload-artifact@v4
+        with:
+          name: k-stick-v2-animation
+          path: v2/out/k-stick-v2.mp4
+          retention-days: 7
