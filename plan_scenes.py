@@ -36,12 +36,27 @@ POSE_FILES = {
     "celebrating": "assets/poses/k_stick_celebrating.png",
 }
 
+PROP_FILES = {
+    "apple": "assets/props/apple.png",
+    "phone": "assets/props/phone.png",
+    "laptop": "assets/props/laptop.png",
+    "chair": "assets/props/chair.png",
+    "pillow": "assets/props/pillow.png",
+    "alarm_clock": "assets/props/alarm_clock.png",
+    "shopping_bag": "assets/props/shopping_bag.png",
+    "burger": "assets/props/burger.png",
+    "book": "assets/props/book.png",
+    "stool": "assets/props/stool.png",
+    "scanner": "assets/props/scanner.png",
+    "kiosk": "assets/props/kiosk.png",
+}
+
 
 def contains_any(text, words):
     text = text.lower()
 
     for word in words:
-        if re.search(r"\b" + re.escape(word) + r"\b", text):
+        if word in text:
             return True
 
     return False
@@ -50,16 +65,12 @@ def contains_any(text, words):
 def choose_pose(text):
     text = text.lower()
 
-    # Action poses get priority over facial expressions.
-
     if contains_any(
         text,
         [
-            "fall",
+            "falling",
             "falls",
             "fell",
-            "falling",
-            "trip",
             "trips",
             "slips",
             "loses balance"
@@ -70,10 +81,9 @@ def choose_pose(text):
     if contains_any(
         text,
         [
-            "run",
-            "runs",
             "running",
-            "rush",
+            "runs",
+            "rushes",
             "races"
         ]
     ):
@@ -82,9 +92,8 @@ def choose_pose(text):
     if contains_any(
         text,
         [
-            "walk",
-            "walks",
-            "walking"
+            "walking",
+            "walks"
         ]
     ):
         return "walking"
@@ -92,12 +101,11 @@ def choose_pose(text):
     if contains_any(
         text,
         [
-            "sit",
-            "sits",
             "sitting",
+            "sits",
             "sat",
-            "floor",
-            "chair"
+            "sit down",
+            "sits on the floor"
         ]
     ):
         return "sitting"
@@ -105,13 +113,11 @@ def choose_pose(text):
     if contains_any(
         text,
         [
-            "sleep",
-            "sleeps",
             "sleeping",
+            "sleeps",
             "asleep",
-            "lies down",
-            "lying",
-            "bed"
+            "lying down",
+            "lies down"
         ]
     ):
         return "sleeping"
@@ -119,9 +125,9 @@ def choose_pose(text):
     if contains_any(
         text,
         [
-            "point",
-            "points",
-            "pointing"
+            "pointing",
+            "points at",
+            "points to"
         ]
     ):
         return "pointing"
@@ -129,11 +135,10 @@ def choose_pose(text):
     if contains_any(
         text,
         [
-            "phone",
+            "holding his phone",
+            "looks at his phone",
             "smartphone",
-            "texting",
-            "texts",
-            "scrolls"
+            "texting"
         ]
     ):
         return "phone"
@@ -141,12 +146,10 @@ def choose_pose(text):
     if contains_any(
         text,
         [
-            "laptop",
-            "computer",
             "working",
-            "work",
             "typing",
-            "desk"
+            "using laptop",
+            "using a laptop"
         ]
     ):
         return "working"
@@ -154,11 +157,10 @@ def choose_pose(text):
     if contains_any(
         text,
         [
-            "hide",
-            "hides",
             "hiding",
-            "sneaks",
-            "crouches"
+            "hides",
+            "crouches",
+            "sneaks"
         ]
     ):
         return "hiding"
@@ -167,10 +169,9 @@ def choose_pose(text):
         text,
         [
             "celebrates",
-            "celebrate",
-            "wins",
+            "celebrating",
             "victory",
-            "jumps happily"
+            "wins"
         ]
     ):
         return "celebrating"
@@ -179,7 +180,6 @@ def choose_pose(text):
         text,
         [
             "confused",
-            "confusion",
             "shrugs",
             "doesn't understand",
             "does not understand"
@@ -196,9 +196,7 @@ def choose_expression(text):
     if contains_any(
         text,
         [
-            "shock",
             "shocked",
-            "surprise",
             "surprised",
             "panic",
             "scared",
@@ -237,8 +235,7 @@ def choose_expression(text):
         [
             "sleepy",
             "tired",
-            "yawn",
-            "yawning"
+            "yawn"
         ]
     ):
         return "sleepy"
@@ -246,27 +243,76 @@ def choose_expression(text):
     return "happy"
 
 
-def choose_character_asset(text):
-    pose = choose_pose(text)
+def choose_prop(text):
+    text = text.lower()
 
-    # If story clearly contains an action,
-    # use the matching action pose.
-    if pose and pose in POSE_FILES:
-        return {
-            "asset_type": "pose",
-            "pose": pose,
-            "expression": None,
-            "character_asset": POSE_FILES[pose]
-        }
+    rules = {
+        "apple": [
+            "apple"
+        ],
 
-    expression = choose_expression(text)
+        "phone": [
+            "phone",
+            "smartphone"
+        ],
 
-    return {
-        "asset_type": "expression",
-        "pose": "standing",
-        "expression": expression,
-        "character_asset": EXPRESSION_FILES[expression]
+        "laptop": [
+            "laptop",
+            "computer"
+        ],
+
+        "chair": [
+            "chair"
+        ],
+
+        "pillow": [
+            "pillow"
+        ],
+
+        "alarm_clock": [
+            "alarm",
+            "alarm clock"
+        ],
+
+        "shopping_bag": [
+            "shopping bag",
+            "grocery bag",
+            "bagging"
+        ],
+
+        "burger": [
+            "burger",
+            "hamburger"
+        ],
+
+        "book": [
+            "book"
+        ],
+
+        "stool": [
+            "stool"
+        ],
+
+        "scanner": [
+            "scanner",
+            "barcode",
+            "scans",
+            "scan"
+        ],
+
+        "kiosk": [
+            "kiosk",
+            "self-checkout",
+            "checkout"
+        ],
     }
+
+    for prop_name, keywords in rules.items():
+        for keyword in keywords:
+            if keyword in text:
+                return prop_name
+
+    return None
 
 
 def choose_background(story):
@@ -305,7 +351,6 @@ def choose_background(story):
         [
             "classroom",
             "teacher",
-            "student",
             "school",
             "exam"
         ]
@@ -318,7 +363,6 @@ def choose_background(story):
             "office",
             "work",
             "laptop",
-            "desk",
             "boss"
         ]
     ):
@@ -329,14 +373,45 @@ def choose_background(story):
         [
             "kitchen",
             "fridge",
-            "food",
-            "snack",
-            "burger"
+            "burger",
+            "snack"
         ]
     ):
         return "kitchen"
 
     return "street"
+
+
+def choose_character(text):
+    pose = choose_pose(text)
+
+    if pose and pose in POSE_FILES:
+        return {
+            "asset_type": "pose",
+            "pose": pose,
+            "expression": None,
+            "character_asset": POSE_FILES[pose]
+        }
+
+    expression = choose_expression(text)
+
+    return {
+        "asset_type": "expression",
+        "pose": "standing",
+        "expression": expression,
+        "character_asset": EXPRESSION_FILES[
+            expression
+        ]
+    }
+
+
+def shorten_caption(text):
+    words = text.split()
+
+    if len(words) <= 6:
+        return text
+
+    return " ".join(words[:6]) + "..."
 
 
 def main():
@@ -352,10 +427,12 @@ def main():
     ) as f:
         story = json.load(f)
 
-    bg_key = choose_background(story)
+    background_key = choose_background(
+        story
+    )
 
     background_asset = BACKGROUND_FILES[
-        bg_key
+        background_key
     ]
 
     scene_texts = [
@@ -372,58 +449,104 @@ def main():
         4.5
     ]
 
+    hook = story.get(
+        "hook_text",
+        "WAIT FOR IT"
+    )
+
+    hook_words = hook.split()
+
+    if len(hook_words) > 6:
+        hook = " ".join(hook_words[:6])
+
     plan = {
-        "topic": story.get("topic", ""),
-        "hook_text": story.get(
-            "hook_text",
-            "WAIT FOR IT"
+        "topic": story.get(
+            "topic",
+            ""
         ),
-        "background": bg_key,
+
+        "hook_text": hook,
+
+        "background": background_key,
+
         "background_asset": background_asset,
+
         "video_title": story.get(
             "video_title",
             ""
         ),
+
         "facebook_caption": story.get(
             "facebook_caption",
             ""
         ),
+
         "youtube_description": story.get(
             "youtube_description",
             ""
         ),
+
         "hashtags": story.get(
             "hashtags",
             []
         ),
+
         "scenes": []
     }
 
     for index, text in enumerate(
         scene_texts
     ):
-        character = choose_character_asset(
+        character = choose_character(
             text
         )
+
+        prop_name = choose_prop(
+            text
+        )
+
+        prop_asset = None
+
+        if prop_name:
+            prop_asset = PROP_FILES.get(
+                prop_name
+            )
 
         plan["scenes"].append(
             {
                 "scene_number": index + 1,
-                "duration_seconds": durations[index],
+
+                "duration_seconds": durations[
+                    index
+                ],
+
                 "story_text": text,
+
+                "short_caption": shorten_caption(
+                    text
+                ),
+
                 "background_asset": background_asset,
+
                 "character_asset": character[
                     "character_asset"
                 ],
+
                 "asset_type": character[
                     "asset_type"
                 ],
+
                 "pose": character[
                     "pose"
                 ],
+
                 "expression": character[
                     "expression"
-                ]
+                ],
+
+                "prop": prop_name,
+
+                "prop_asset": prop_asset
             }
         )
 
@@ -448,7 +571,7 @@ def main():
     )
 
     print(
-        "\nScene plan saved as scene_plan.json"
+        "\nScene plan saved successfully."
     )
 
 
