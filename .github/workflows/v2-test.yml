@@ -63,4 +63,4 @@ jobs:
           path: v2/out/k-stick-v2.mp4
           retention-days: 7
 
-# V2.2: corrected blocking, prop-to-hand bites, fixed hook overlay, safer camera shots.
+# V2.3: foreground occlusion for proper table depth plus smaller hand-to-mouth pizza motion.
