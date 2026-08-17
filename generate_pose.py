@@ -149,9 +149,7 @@ Vertical portrait composition.
             image=base_image,
             prompt=prompt,
             size="1024x1536",
-            quality="medium",
-            input_fidelity="high",
-            output_format="png"
+            quality="medium"
         )
 
     image_base64 = result.data[0].b64_json
