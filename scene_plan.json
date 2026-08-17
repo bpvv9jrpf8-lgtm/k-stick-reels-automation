@@ -1,12 +1,12 @@
 {
-  "topic": "K-Stick and the Tiny Umbrella That Only Covers His Cap",
-  "hook_text": "Perfect! I am totally protected!",
+  "topic": "K-Stick and the Map That Keeps Changing Its Mind",
+  "hook_text": "K-Stick finally found a map... probably.",
   "background": "assets/backgrounds/street.png",
   "scenes": [
     {
       "scene_number": 1,
       "duration_seconds": 3,
-      "story_text": "K-Stick sees raindrops and proudly opens a tiny umbrella, standing underneath it.",
+      "story_text": "K-Stick unfolds the map, spots the red marker, and confidently points down the path as if he knows exactly where he is going.",
       "character_asset": "assets/expressions/k_stick_happy.png",
       "background_asset": "assets/backgrounds/street.png",
       "expression": "happy"
@@ -14,7 +14,7 @@
     {
       "scene_number": 2,
       "duration_seconds": 3,
-      "story_text": "The umbrella covers only his red cap while the rest of his body gets lightly sprinkled. K-Stick keeps smiling and gives a confident thumbs-up.",
+      "story_text": "He takes two steps, but the map suddenly flips its arrow around. K-Stick spins in place, following the new direction while his eyes grow wider.",
       "character_asset": "assets/expressions/k_stick_happy.png",
       "background_asset": "assets/backgrounds/street.png",
       "expression": "happy"
@@ -22,7 +22,7 @@
     {
       "scene_number": 3,
       "duration_seconds": 3,
-      "story_text": "He notices his cap is completely dry and proudly points at it like a weather expert.",
+      "story_text": "The map changes again and points directly at K-Stick. He looks behind himself, expecting a destination, but finds nothing.",
       "character_asset": "assets/expressions/k_stick_happy.png",
       "background_asset": "assets/backgrounds/street.png",
       "expression": "happy"
@@ -30,7 +30,7 @@
     {
       "scene_number": 4,
       "duration_seconds": 4,
-      "story_text": "A single raindrop lands on his nose, and the tiny umbrella instantly flips inside out. K-Stick calmly puts the umbrella on his cap like a hat and says, \"Still protected!\"",
+      "story_text": "K-Stick proudly taps the map and says, \"Found it!\" The map reveals a tiny label on his cap reading \"You are here,\" so he has been the destination the whole time.",
       "character_asset": "assets/expressions/k_stick_happy.png",
       "background_asset": "assets/backgrounds/street.png",
       "expression": "happy"
