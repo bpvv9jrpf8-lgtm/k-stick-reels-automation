@@ -1,4 +1,4 @@
-name: K-Stick Prop Pack
+name: K-Stick Final Polish Test
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ permissions:
   contents: write
 
 jobs:
-  build-prop-pack:
+  build-reel:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,70 +27,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ffmpeg
 
-      - name: Generate apple
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_prop.py apple
-
-      - name: Generate phone
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_prop.py phone
-
-      - name: Generate laptop
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_prop.py laptop
-
-      - name: Generate chair
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_prop.py chair
-
-      - name: Generate pillow
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_prop.py pillow
-
-      - name: Generate alarm clock
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_prop.py alarm_clock
-
-      - name: Generate shopping bag
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_prop.py shopping_bag
-
-      - name: Generate burger
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_prop.py burger
-
-      - name: Generate book
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_prop.py book
-
-      - name: Generate stool
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_prop.py stool
-
-      - name: Generate scanner
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_prop.py scanner
-
-      - name: Generate kiosk
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_prop.py kiosk
-
-      - name: Remove prop backgrounds
-        run: python make_props_transparent.py
-
-      - name: Generate new story
+      - name: Generate fresh K-Stick story
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: python main.py
@@ -98,35 +35,33 @@ jobs:
       - name: Build smart scene plan
         run: python plan_scenes.py
 
-      - name: Generate AI voiceover
+      - name: Generate narrator and K-Stick voices
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: python generate_voice.py
 
-      - name: Build reel with props
+      - name: Build polished reel
         run: python build_reel.py
 
-      - name: Upload reel artifact
+      - name: Upload polished reel
         uses: actions/upload-artifact@v4
         with:
-          name: k-stick-prop-test
-          path: output/k_stick_reel_final.mp4
+          name: k-stick-final-polish
+          path: output/k_stick_reel_polished.mp4
           retention-days: 7
 
-      - name: Save prop library and story
+      - name: Save successful story history
         run: |
           git config user.name "k-stick-bot"
           git config user.email "k-stick-bot@users.noreply.github.com"
 
-          git add assets/props_raw/ \
-            assets/props/ \
-            used_topics.json \
+          git add used_topics.json \
             latest_story.json \
             scene_plan.json
 
           if git diff --cached --quiet; then
-            echo "No new files to save."
+            echo "No history changes."
           else
-            git commit -m "Create reusable K-Stick prop library"
+            git commit -m "Save K-Stick polished reel story"
             git push
           fi
