@@ -1,38 +1,38 @@
 {
-  "topic": "K-Stick and the Mirror That Copies Him Late",
-  "hook_text": "Why is K-Stick's reflection always one move behind?",
-  "background": "assets/backgrounds/bedroom.png",
+  "topic": "K-Stick and the Chair That Needs a Break",
+  "hook_text": "K-Stick finds a chair... but the chair is already tired!",
+  "background": "assets/backgrounds/classroom.png",
   "scenes": [
     {
       "scene_number": 1,
       "duration_seconds": 3,
-      "story_text": "K-Stick walks up to the mirror, adjusts his red cap, and smiles proudly.",
+      "story_text": "K-Stick walks into the classroom, sees the empty chair, and happily points at it. He says, 'Perfect!'",
       "character_asset": "assets/transparent/k_stick_happy_transparent.png",
-      "background_asset": "assets/backgrounds/bedroom.png",
+      "background_asset": "assets/backgrounds/classroom.png",
       "expression": "happy"
     },
     {
       "scene_number": 2,
       "duration_seconds": 3,
-      "story_text": "He waves, but the reflection waves a moment later. K-Stick freezes, then rapidly changes poses to test it.",
+      "story_text": "As K-Stick pulls the chair out, it suddenly unfolds a tiny sign reading 'OUT OF ENERGY' and slowly flops sideways.",
       "character_asset": "assets/transparent/k_stick_happy_transparent.png",
-      "background_asset": "assets/backgrounds/bedroom.png",
+      "background_asset": "assets/backgrounds/classroom.png",
       "expression": "happy"
     },
     {
       "scene_number": 3,
       "duration_seconds": 3,
-      "story_text": "The reflection keeps lagging behind, making every pose look hilariously out of sync.",
-      "character_asset": "assets/transparent/k_stick_happy_transparent.png",
-      "background_asset": "assets/backgrounds/bedroom.png",
-      "expression": "happy"
+      "story_text": "K-Stick looks shocked, then gently places a tiny paper cup beside the chair like he is giving it a break.",
+      "character_asset": "assets/transparent/k_stick_shocked_transparent.png",
+      "background_asset": "assets/backgrounds/classroom.png",
+      "expression": "shocked"
     },
     {
       "scene_number": 4,
       "duration_seconds": 4,
-      "story_text": "K-Stick walks away, but his delayed reflection finally catches up, steps out of the mirror, and takes his place. K-Stick returns, sees the new reflection, and both stare at each other in confusion.",
+      "story_text": "K-Stick finally sits on the floor instead. The chair instantly pops upright, sits on the floor beside him, and displays a new sign: 'Much better!'",
       "character_asset": "assets/transparent/k_stick_happy_transparent.png",
-      "background_asset": "assets/backgrounds/bedroom.png",
+      "background_asset": "assets/backgrounds/classroom.png",
       "expression": "happy"
     }
   ]
