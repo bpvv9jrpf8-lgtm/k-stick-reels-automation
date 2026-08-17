@@ -1,39 +1,39 @@
 {
-  "topic": "K-Stick and the Alarm Clock That Snoozes Him",
-  "hook_text": "What if your alarm could hit snooze on YOU?",
+  "topic": "K-Stick and the Mirror That Copies Him Late",
+  "hook_text": "Why is K-Stick's reflection always one move behind?",
   "background": "assets/backgrounds/bedroom.png",
   "scenes": [
     {
       "scene_number": 1,
       "duration_seconds": 3,
-      "story_text": "K-Stick proudly sets the alarm for one minute later, gives a confident thumbs-up, and lies down.",
-      "character_asset": "assets/expressions/k_stick_happy.png",
+      "story_text": "K-Stick walks up to the mirror, adjusts his red cap, and smiles proudly.",
+      "character_asset": "assets/transparent/k_stick_happy_transparent.png",
       "background_asset": "assets/backgrounds/bedroom.png",
       "expression": "happy"
     },
     {
       "scene_number": 2,
       "duration_seconds": 3,
-      "story_text": "The alarm rings loudly. K-Stick reaches over and taps the snooze button, but the clock displays: \"SNOOZING K-STICK.\" K-Stick instantly droops and falls asleep.",
-      "character_asset": "assets/expressions/k_stick_sleepy.png",
+      "story_text": "He waves, but the reflection waves a moment later. K-Stick freezes, then rapidly changes poses to test it.",
+      "character_asset": "assets/transparent/k_stick_happy_transparent.png",
       "background_asset": "assets/backgrounds/bedroom.png",
-      "expression": "sleepy"
+      "expression": "happy"
     },
     {
       "scene_number": 3,
       "duration_seconds": 3,
-      "story_text": "K-Stick jolts awake and points angrily at the clock. The alarm rings again, but the clock grows a tiny stick arm and presses its own snooze button.",
-      "character_asset": "assets/expressions/k_stick_happy.png",
+      "story_text": "The reflection keeps lagging behind, making every pose look hilariously out of sync.",
+      "character_asset": "assets/transparent/k_stick_happy_transparent.png",
       "background_asset": "assets/backgrounds/bedroom.png",
       "expression": "happy"
     },
     {
       "scene_number": 4,
       "duration_seconds": 4,
-      "story_text": "The clock displays \"Just five more minutes\" while K-Stick quietly climbs back into bed and gives it a grateful thumbs-up.",
-      "character_asset": "assets/expressions/k_stick_sleepy.png",
+      "story_text": "K-Stick walks away, but his delayed reflection finally catches up, steps out of the mirror, and takes his place. K-Stick returns, sees the new reflection, and both stare at each other in confusion.",
+      "character_asset": "assets/transparent/k_stick_happy_transparent.png",
       "background_asset": "assets/backgrounds/bedroom.png",
-      "expression": "sleepy"
+      "expression": "happy"
     }
   ]
 }

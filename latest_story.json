@@ -1,23 +1,23 @@
 {
-  "topic": "K-Stick and the Alarm Clock That Snoozes Him",
-  "hook_text": "What if your alarm could hit snooze on YOU?",
-  "background": "Simple bedroom with a bed, nightstand, and reusable wall background",
-  "main_expression": "Wide-eyed panic, followed by sleepy confusion",
-  "main_pose": "Standing beside the bed with one hand reaching toward the alarm clock",
-  "prop": "Digital alarm clock with a large snooze button",
-  "scene_1": "K-Stick proudly sets the alarm for one minute later, gives a confident thumbs-up, and lies down.",
-  "scene_2": "The alarm rings loudly. K-Stick reaches over and taps the snooze button, but the clock displays: \"SNOOZING K-STICK.\" K-Stick instantly droops and falls asleep.",
-  "scene_3": "K-Stick jolts awake and points angrily at the clock. The alarm rings again, but the clock grows a tiny stick arm and presses its own snooze button.",
-  "twist_ending": "The clock displays \"Just five more minutes\" while K-Stick quietly climbs back into bed and gives it a grateful thumbs-up.",
-  "video_title": "K-Stick vs. The Alarm Clock That Snoozes Him",
-  "facebook_caption": "K-Stick finally found an alarm clock that understands him a little too well. ⏰😴",
-  "youtube_description": "K-Stick sets an alarm to wake up early, but the alarm clock has a hilarious plan of its own. A quick, family-friendly stickman comedy reel with a sleepy twist.",
+  "topic": "K-Stick and the Mirror That Copies Him Late",
+  "hook_text": "Why is K-Stick's reflection always one move behind?",
+  "background": "Simple bedroom or hallway with a large wall mirror",
+  "main_expression": "Confused wide eyes that turn into an amused grin",
+  "main_pose": "Standing in front of the mirror, waving, then pointing suspiciously at his reflection",
+  "prop": "Large rectangular mirror",
+  "scene_1": "K-Stick walks up to the mirror, adjusts his red cap, and smiles proudly.",
+  "scene_2": "He waves, but the reflection waves a moment later. K-Stick freezes, then rapidly changes poses to test it.",
+  "scene_3": "The reflection keeps lagging behind, making every pose look hilariously out of sync.",
+  "twist_ending": "K-Stick walks away, but his delayed reflection finally catches up, steps out of the mirror, and takes his place. K-Stick returns, sees the new reflection, and both stare at each other in confusion.",
+  "video_title": "K-Stick vs. The Late Reflection",
+  "facebook_caption": "K-Stick found a mirror with terrible internet connection! 😂🪞",
+  "youtube_description": "K-Stick discovers that his reflection is running on a delay. But when it finally catches up, the mirror mystery gets even funnier!",
   "hashtags": [
     "#KStick",
     "#StickmanComedy",
     "#FunnyReel",
     "#FamilyFriendly"
   ],
-  "image_prompt": "A clean 2D cartoon frame featuring K-Stick, a simple black stickman with a round white face, big expressive eyes, and a signature red cap, standing in a minimal bedroom beside a digital alarm clock on a nightstand. Bold black outlines, white and light pastel background, expressive pose, simple reusable props, family-friendly humor, vertical reel composition.",
-  "motion_prompt": "Create a fast 15-second 2D stickman animation. K-Stick confidently sets a digital alarm, lies down, and the alarm rings. He taps snooze, then instantly droops and falls asleep as the clock display changes to 'SNOOZING K-STICK.' He wakes and points at the clock. The clock grows a tiny arm, presses its own snooze button, displays 'JUST FIVE MORE MINUTES,' and K-Stick happily climbs back into bed. Use quick squash-and-stretch, simple camera cuts, exaggerated eye expressions, and playful sound effects."
+  "image_prompt": "A clean colorful 2D cartoon scene for a short funny stickman animation, K-Stick is a simple black stickman with a round white face, huge expressive eyes, and a signature red cap, standing in front of a large rectangular wall mirror in a simple bedroom or hallway, playful family-friendly style, bold outlines, minimal reusable background, no text, no copyrighted characters.",
+  "motion_prompt": "15-second comedic animation with quick timing: K-Stick enters and adjusts his red cap, smiles at the mirror, and waves. His reflection waves half a second late. K-Stick tests it with fast poses and exaggerated confused reactions while the reflection copies each move late. K-Stick walks away; after a beat, the reflection steps out of the mirror and stands in his place. K-Stick pops back in, both characters stare at each other, then shrug simultaneously. Use simple squash-and-stretch, quick zooms, and a cheerful pop sound for the final shrug."
 }
