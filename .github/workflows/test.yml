@@ -1,4 +1,4 @@
-name: K-Stick Pose Pack
+name: K-Stick Prop Pack
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ permissions:
   contents: write
 
 jobs:
-  create-pose-pack:
+  build-prop-pack:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,7 +19,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: pip install -r requirements.txt
 
       - name: Install FFmpeg
@@ -27,99 +27,99 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ffmpeg
 
-      - name: Generate standing pose
+      - name: Generate apple
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_pose.py standing
+        run: python generate_prop.py apple
 
-      - name: Generate sitting pose
+      - name: Generate phone
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_pose.py sitting
+        run: python generate_prop.py phone
 
-      - name: Generate sleeping pose
+      - name: Generate laptop
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_pose.py sleeping
+        run: python generate_prop.py laptop
 
-      - name: Generate walking pose
+      - name: Generate chair
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_pose.py walking
+        run: python generate_prop.py chair
 
-      - name: Generate running pose
+      - name: Generate pillow
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_pose.py running
+        run: python generate_prop.py pillow
 
-      - name: Generate pointing pose
+      - name: Generate alarm clock
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_pose.py pointing
+        run: python generate_prop.py alarm_clock
 
-      - name: Generate phone pose
+      - name: Generate shopping bag
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_pose.py phone
+        run: python generate_prop.py shopping_bag
 
-      - name: Generate working pose
+      - name: Generate burger
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_pose.py working
+        run: python generate_prop.py burger
 
-      - name: Generate hiding pose
+      - name: Generate book
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_pose.py hiding
+        run: python generate_prop.py book
 
-      - name: Generate falling pose
+      - name: Generate stool
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_pose.py falling
+        run: python generate_prop.py stool
 
-      - name: Generate confused pose
+      - name: Generate scanner
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_pose.py confused
+        run: python generate_prop.py scanner
 
-      - name: Generate celebrating pose
+      - name: Generate kiosk
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_pose.py celebrating
+        run: python generate_prop.py kiosk
 
-      - name: Remove pose backgrounds
-        run: python make_pose_transparent.py
+      - name: Remove prop backgrounds
+        run: python make_props_transparent.py
 
       - name: Generate new story
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: python main.py
 
-      - name: Build intelligent scene plan
+      - name: Build smart scene plan
         run: python plan_scenes.py
 
-      - name: Generate voiceover
+      - name: Generate AI voiceover
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: python generate_voice.py
 
-      - name: Build test reel
+      - name: Build reel with props
         run: python build_reel.py
 
-      - name: Upload test reel
+      - name: Upload reel artifact
         uses: actions/upload-artifact@v4
         with:
-          name: k-stick-pose-test
+          name: k-stick-prop-test
           path: output/k_stick_reel_final.mp4
           retention-days: 7
 
-      - name: Save pose library
+      - name: Save prop library and story
         run: |
           git config user.name "k-stick-bot"
           git config user.email "k-stick-bot@users.noreply.github.com"
 
-          git add assets/poses_raw/ \
-            assets/poses/ \
+          git add assets/props_raw/ \
+            assets/props/ \
             used_topics.json \
             latest_story.json \
             scene_plan.json
@@ -127,6 +127,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No new files to save."
           else
-            git commit -m "Create reusable K-Stick pose library"
+            git commit -m "Create reusable K-Stick prop library"
             git push
           fi
