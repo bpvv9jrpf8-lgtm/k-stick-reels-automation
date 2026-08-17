@@ -1,23 +1,23 @@
 {
-  "topic": "K-Stick and the Self-Checkout That Scans Him",
-  "hook_text": "Unexpected item in the bagging area!",
-  "background": "Simple grocery store checkout with a self-checkout kiosk and one shopping bag",
-  "main_expression": "Confident smile turning into wide-eyed confusion",
-  "main_pose": "Standing proudly beside the scanner while holding one small grocery item",
-  "prop": "Self-checkout scanner, shopping bag, and one apple",
-  "scene_1": "K-Stick confidently scans an apple and gives a thumbs-up as the kiosk beeps.",
-  "scene_2": "The kiosk flashes: \"Unexpected item in bagging area!\" K-Stick checks the bag, but it is empty.",
-  "scene_3": "K-Stick slowly steps away, and the kiosk suddenly says: \"Please place K-Stick in the bagging area.\"",
-  "twist_ending": "K-Stick gasps, then places only his red cap in the bag; the kiosk proudly says: \"Thank you for your purchase!\"",
-  "video_title": "When the Checkout Scans YOU",
-  "facebook_caption": "K-Stick went shopping for an apple and somehow became the unexpected item! 😂",
-  "youtube_description": "K-Stick tries a simple self-checkout, but the machine has a very unusual idea of what belongs in the bagging area. A quick, family-friendly stickman comedy reel.",
+  "topic": "K-Stick and the Backpack with the Bottomless Pocket",
+  "hook_text": "K-Stick packs one tiny book... and loses his whole arm!",
+  "background": "Simple bedroom or classroom corner with a plain floor, small table, and reusable backpack",
+  "main_expression": "Confident grin changing to wide-eyed panic, then confused surprise",
+  "main_pose": "Standing beside the backpack, leaning forward with one arm buried inside",
+  "prop": "Small red-and-black backpack",
+  "scene_1": "K-Stick proudly places one tiny book into the open backpack and zips it halfway shut.",
+  "scene_2": "He reaches inside to retrieve the book, but his arm keeps disappearing deeper into the backpack. He pulls with his other hand, stretching comically.",
+  "scene_3": "K-Stick finally yanks his arm free, holding the book... plus several identical red caps stacked on his hand.",
+  "twist_ending": "He looks at the caps, then at the red cap already on his head. The backpack suddenly zips itself shut and whispers a tiny hiccup. K-Stick slowly hides his cap behind his back.",
+  "video_title": "K-Stick and the Bottomless Backpack",
+  "facebook_caption": "He packed one book and somehow found a whole hat collection! 🎒😂",
+  "youtube_description": "K-Stick discovers that his ordinary backpack has a very unusual pocket. What starts as a quick book grab turns into a surprising cap collection in this funny 15-second stickman reel.",
   "hashtags": [
     "#KStick",
     "#StickmanComedy",
-    "#FunnyReel",
-    "#SelfCheckout"
+    "#FunnyReels",
+    "#FamilyFriendly"
   ],
-  "image_prompt": "A clean 2D family-friendly cartoon frame featuring K-Stick, a simple black stickman with a round white face, huge expressive eyes, and a signature red cap, standing at a basic grocery store self-checkout kiosk. He holds one red apple beside an empty shopping bag. Minimal reusable background, bold simple outlines, bright colors, comedic confused expression, no brand logos, vertical 9:16 composition.",
-  "motion_prompt": "15-second fast-paced 2D stickman animation in three beats: K-Stick scans an apple and confidently gives a thumbs-up; the kiosk flashes a warning and K-Stick nervously checks the empty bag; he steps away as the kiosk identifies him as the unexpected item. He reacts with wide eyes, places only his red cap into the bag, and the kiosk gives a happy confirmation beep. Use simple poses, quick zooms, readable text, squash-and-stretch reactions, and a cheerful comedic sound effect."
+  "image_prompt": "A simple 2D family-friendly stickman cartoon frame featuring K-Stick, a black stickman with a round white face, big expressive eyes, and a signature red cap, standing beside an open small red-and-black backpack in a plain classroom or bedroom corner. His arm is comically deep inside the backpack, with a tiny book visible nearby and several identical red caps spilling from his hand. Clean bold outlines, flat colors, minimal reusable background, expressive pose, no text, no copyrighted characters.",
+  "motion_prompt": "15-second fast-paced 2D stickman animation. Start with K-Stick confidently dropping one tiny book into the backpack. He reaches inside and his arm stretches comically farther and farther while his face changes from a grin to wide-eyed panic. He pulls hard and pops free holding several identical red caps. He checks the red cap already on his head, confused. The backpack zips itself shut, makes a tiny hiccup motion, and K-Stick nervously hides his cap behind his back. Use simple squash-and-stretch, quick reaction zooms, light comedic timing, reusable static background, and no crowd scenes."
 }

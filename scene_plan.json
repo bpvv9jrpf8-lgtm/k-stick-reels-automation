@@ -1,57 +1,69 @@
 {
-  "topic": "K-Stick and the Self-Checkout That Scans Him",
-  "hook_text": "Unexpected item in the bagging area!",
-  "background": "street",
-  "background_asset": "assets/backgrounds/street.png",
-  "video_title": "When the Checkout Scans YOU",
-  "facebook_caption": "K-Stick went shopping for an apple and somehow became the unexpected item! 😂",
-  "youtube_description": "K-Stick tries a simple self-checkout, but the machine has a very unusual idea of what belongs in the bagging area. A quick, family-friendly stickman comedy reel.",
+  "topic": "K-Stick and the Backpack with the Bottomless Pocket",
+  "hook_text": "K-Stick packs one tiny book... and",
+  "background": "bedroom",
+  "background_asset": "assets/backgrounds/bedroom.png",
+  "video_title": "K-Stick and the Bottomless Backpack",
+  "facebook_caption": "He packed one book and somehow found a whole hat collection! 🎒😂",
+  "youtube_description": "K-Stick discovers that his ordinary backpack has a very unusual pocket. What starts as a quick book grab turns into a surprising cap collection in this funny 15-second stickman reel.",
   "hashtags": [
     "#KStick",
     "#StickmanComedy",
-    "#FunnyReel",
-    "#SelfCheckout"
+    "#FunnyReels",
+    "#FamilyFriendly"
   ],
   "scenes": [
     {
       "scene_number": 1,
       "duration_seconds": 3.5,
-      "story_text": "K-Stick confidently scans an apple and gives a thumbs-up as the kiosk beeps.",
-      "background_asset": "assets/backgrounds/street.png",
+      "story_text": "K-Stick proudly places one tiny book into the open backpack and zips it halfway shut.",
+      "short_caption": "K-Stick proudly places one tiny book...",
+      "background_asset": "assets/backgrounds/bedroom.png",
       "character_asset": "assets/transparent/k_stick_happy_transparent.png",
       "asset_type": "expression",
       "pose": "standing",
-      "expression": "happy"
+      "expression": "happy",
+      "prop": "book",
+      "prop_asset": "assets/props/book.png"
     },
     {
       "scene_number": 2,
       "duration_seconds": 3.5,
-      "story_text": "The kiosk flashes: \"Unexpected item in bagging area!\" K-Stick checks the bag, but it is empty.",
-      "background_asset": "assets/backgrounds/street.png",
+      "story_text": "He reaches inside to retrieve the book, but his arm keeps disappearing deeper into the backpack. He pulls with his other hand, stretching comically.",
+      "short_caption": "He reaches inside to retrieve the...",
+      "background_asset": "assets/backgrounds/bedroom.png",
       "character_asset": "assets/transparent/k_stick_happy_transparent.png",
       "asset_type": "expression",
       "pose": "standing",
-      "expression": "happy"
+      "expression": "happy",
+      "prop": "book",
+      "prop_asset": "assets/props/book.png"
     },
     {
       "scene_number": 3,
       "duration_seconds": 3.5,
-      "story_text": "K-Stick slowly steps away, and the kiosk suddenly says: \"Please place K-Stick in the bagging area.\"",
-      "background_asset": "assets/backgrounds/street.png",
+      "story_text": "K-Stick finally yanks his arm free, holding the book... plus several identical red caps stacked on his hand.",
+      "short_caption": "K-Stick finally yanks his arm free,...",
+      "background_asset": "assets/backgrounds/bedroom.png",
       "character_asset": "assets/transparent/k_stick_happy_transparent.png",
       "asset_type": "expression",
       "pose": "standing",
-      "expression": "happy"
+      "expression": "happy",
+      "prop": "book",
+      "prop_asset": "assets/props/book.png"
     },
     {
       "scene_number": 4,
       "duration_seconds": 4.5,
-      "story_text": "K-Stick gasps, then places only his red cap in the bag; the kiosk proudly says: \"Thank you for your purchase!\"",
-      "background_asset": "assets/backgrounds/street.png",
-      "character_asset": "assets/transparent/k_stick_happy_transparent.png",
-      "asset_type": "expression",
-      "pose": "standing",
-      "expression": "happy"
+      "story_text": "He looks at the caps, then at the red cap already on his head. The backpack suddenly zips itself shut and whispers a tiny hiccup. K-Stick slowly hides his cap behind his back.",
+      "short_caption": "He looks at the caps, then...",
+      "background_asset": "assets/backgrounds/bedroom.png",
+      "character_asset": "assets/poses/k_stick_hiding.png",
+      "asset_type": "pose",
+      "pose": "hiding",
+      "expression": null,
+      "prop": null,
+      "prop_asset": null
     }
   ]
 }
