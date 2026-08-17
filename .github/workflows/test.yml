@@ -19,8 +19,13 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: pip install -r requirements.txt
+
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
 
       - name: Generate K-Stick base character
         env:
@@ -85,6 +90,15 @@ jobs:
       - name: Build scene plan
         run: python plan_scenes.py
 
+      - name: Build reel video
+        run: python build_reel.py
+
+      - name: Upload reel artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: k-stick-reel
+          path: output/k_stick_reel.mp4
+
       - name: Save generated files
         run: |
           git config user.name "k-stick-bot"
@@ -108,6 +122,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to save."
           else
-            git commit -m "Update K-Stick story and reusable assets"
+            git commit -m "Generate K-Stick reel assets"
             git push
           fi
