@@ -1,39 +1,39 @@
 {
-  "topic": "K-Stick and the Map That Keeps Changing Its Mind",
-  "hook_text": "K-Stick finally found a map... probably.",
-  "background": "assets/backgrounds/street.png",
+  "topic": "K-Stick and the Alarm Clock That Snoozes Him",
+  "hook_text": "What if your alarm could hit snooze on YOU?",
+  "background": "assets/backgrounds/bedroom.png",
   "scenes": [
     {
       "scene_number": 1,
       "duration_seconds": 3,
-      "story_text": "K-Stick unfolds the map, spots the red marker, and confidently points down the path as if he knows exactly where he is going.",
+      "story_text": "K-Stick proudly sets the alarm for one minute later, gives a confident thumbs-up, and lies down.",
       "character_asset": "assets/expressions/k_stick_happy.png",
-      "background_asset": "assets/backgrounds/street.png",
+      "background_asset": "assets/backgrounds/bedroom.png",
       "expression": "happy"
     },
     {
       "scene_number": 2,
       "duration_seconds": 3,
-      "story_text": "He takes two steps, but the map suddenly flips its arrow around. K-Stick spins in place, following the new direction while his eyes grow wider.",
-      "character_asset": "assets/expressions/k_stick_happy.png",
-      "background_asset": "assets/backgrounds/street.png",
-      "expression": "happy"
+      "story_text": "The alarm rings loudly. K-Stick reaches over and taps the snooze button, but the clock displays: \"SNOOZING K-STICK.\" K-Stick instantly droops and falls asleep.",
+      "character_asset": "assets/expressions/k_stick_sleepy.png",
+      "background_asset": "assets/backgrounds/bedroom.png",
+      "expression": "sleepy"
     },
     {
       "scene_number": 3,
       "duration_seconds": 3,
-      "story_text": "The map changes again and points directly at K-Stick. He looks behind himself, expecting a destination, but finds nothing.",
+      "story_text": "K-Stick jolts awake and points angrily at the clock. The alarm rings again, but the clock grows a tiny stick arm and presses its own snooze button.",
       "character_asset": "assets/expressions/k_stick_happy.png",
-      "background_asset": "assets/backgrounds/street.png",
+      "background_asset": "assets/backgrounds/bedroom.png",
       "expression": "happy"
     },
     {
       "scene_number": 4,
       "duration_seconds": 4,
-      "story_text": "K-Stick proudly taps the map and says, \"Found it!\" The map reveals a tiny label on his cap reading \"You are here,\" so he has been the destination the whole time.",
-      "character_asset": "assets/expressions/k_stick_happy.png",
-      "background_asset": "assets/backgrounds/street.png",
-      "expression": "happy"
+      "story_text": "The clock displays \"Just five more minutes\" while K-Stick quietly climbs back into bed and gives it a grateful thumbs-up.",
+      "character_asset": "assets/expressions/k_stick_sleepy.png",
+      "background_asset": "assets/backgrounds/bedroom.png",
+      "expression": "sleepy"
     }
   ]
 }

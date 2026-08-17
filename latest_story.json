@@ -1,23 +1,23 @@
 {
-  "topic": "K-Stick and the Map That Keeps Changing Its Mind",
-  "hook_text": "K-Stick finally found a map... probably.",
-  "background": "Simple park path with one bench, a signpost, and a reusable pale-blue sky background",
-  "main_expression": "Confident smile turning into wide-eyed confusion, then a proud grin",
-  "main_pose": "Standing with one hand holding an unfolded map and the other pointing dramatically toward the path",
-  "prop": "A simple folded paper map with a red location marker",
-  "scene_1": "K-Stick unfolds the map, spots the red marker, and confidently points down the path as if he knows exactly where he is going.",
-  "scene_2": "He takes two steps, but the map suddenly flips its arrow around. K-Stick spins in place, following the new direction while his eyes grow wider.",
-  "scene_3": "The map changes again and points directly at K-Stick. He looks behind himself, expecting a destination, but finds nothing.",
-  "twist_ending": "K-Stick proudly taps the map and says, \"Found it!\" The map reveals a tiny label on his cap reading \"You are here,\" so he has been the destination the whole time.",
-  "video_title": "K-Stick and the Map That Keeps Changing Its Mind",
-  "facebook_caption": "When your map has no idea where you are... but still blames you. 🗺️😂",
-  "youtube_description": "K-Stick follows a very confident map that keeps changing directions. The final destination is much closer than he expected!",
+  "topic": "K-Stick and the Alarm Clock That Snoozes Him",
+  "hook_text": "What if your alarm could hit snooze on YOU?",
+  "background": "Simple bedroom with a bed, nightstand, and reusable wall background",
+  "main_expression": "Wide-eyed panic, followed by sleepy confusion",
+  "main_pose": "Standing beside the bed with one hand reaching toward the alarm clock",
+  "prop": "Digital alarm clock with a large snooze button",
+  "scene_1": "K-Stick proudly sets the alarm for one minute later, gives a confident thumbs-up, and lies down.",
+  "scene_2": "The alarm rings loudly. K-Stick reaches over and taps the snooze button, but the clock displays: \"SNOOZING K-STICK.\" K-Stick instantly droops and falls asleep.",
+  "scene_3": "K-Stick jolts awake and points angrily at the clock. The alarm rings again, but the clock grows a tiny stick arm and presses its own snooze button.",
+  "twist_ending": "The clock displays \"Just five more minutes\" while K-Stick quietly climbs back into bed and gives it a grateful thumbs-up.",
+  "video_title": "K-Stick vs. The Alarm Clock That Snoozes Him",
+  "facebook_caption": "K-Stick finally found an alarm clock that understands him a little too well. ⏰😴",
+  "youtube_description": "K-Stick sets an alarm to wake up early, but the alarm clock has a hilarious plan of its own. A quick, family-friendly stickman comedy reel with a sleepy twist.",
   "hashtags": [
     "#KStick",
     "#StickmanComedy",
     "#FunnyReel",
     "#FamilyFriendly"
   ],
-  "image_prompt": "A clean 2D family-friendly stickman cartoon frame featuring K-Stick, a simple black stickman with a round white face, huge expressive eyes, and a signature red cap. He stands on a simple park path beside a bench and signpost, holding an oversized folded paper map with a red marker and a changing arrow. Minimal reusable background, bold black outlines, bright flat colors, playful comedy style, no text except tiny optional map labels, no crowd, no copyrighted characters.",
-  "motion_prompt": "15-second simple 2D animation with quick comedic timing. Seconds 0-3: K-Stick unfolds the map, smiles confidently, and points down the path. Seconds 3-8: he walks two steps as the map arrow flips direction; he spins around with increasingly confused eyes. Seconds 8-11: the arrow flips again and points directly at him; he slowly looks behind himself. Seconds 11-15: he grins proudly and taps the map, then the map zooms slightly to reveal 'You are here' printed on his red cap. Add a quick record-scratch sound, light paper-flip sounds, and a cheerful comedic sting at the ending."
+  "image_prompt": "A clean 2D cartoon frame featuring K-Stick, a simple black stickman with a round white face, big expressive eyes, and a signature red cap, standing in a minimal bedroom beside a digital alarm clock on a nightstand. Bold black outlines, white and light pastel background, expressive pose, simple reusable props, family-friendly humor, vertical reel composition.",
+  "motion_prompt": "Create a fast 15-second 2D stickman animation. K-Stick confidently sets a digital alarm, lies down, and the alarm rings. He taps snooze, then instantly droops and falls asleep as the clock display changes to 'SNOOZING K-STICK.' He wakes and points at the clock. The clock grows a tiny arm, presses its own snooze button, displays 'JUST FIVE MORE MINUTES,' and K-Stick happily climbs back into bed. Use quick squash-and-stretch, simple camera cuts, exaggerated eye expressions, and playful sound effects."
 }
