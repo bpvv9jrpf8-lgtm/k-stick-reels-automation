@@ -1,14 +1,15 @@
 {
   "title": "The Last Pizza Slice",
   "hook": "ONE SLICE LEFT",
-  "durationSeconds": 24,
+  "durationSeconds": 22,
   "dialogue": [
-    {"id":"k1","speaker":"kstick","text":"That's mine!","start":0.8,"duration":1.0},
-    {"id":"z1","speaker":"zippy","text":"I saw it first!","start":2.0,"duration":1.2},
-    {"id":"m1","speaker":"mimi","text":"Rock, paper, scissors.","start":4.3,"duration":1.4},
-    {"id":"k2","speaker":"kstick","text":"Rock! Paper! Scissors!","start":8.0,"duration":1.5},
-    {"id":"k3","speaker":"kstick","text":"Where's the pizza?!","start":15.1,"duration":1.4},
-    {"id":"z2","speaker":"zippy","text":"You cheated!","start":17.0,"duration":1.1},
-    {"id":"m2","speaker":"mimi","text":"Good game.","start":19.0,"duration":1.0}
+    {"id":"k1","speaker":"kstick","text":"That's mine!","start":0.65,"duration":0.95},
+    {"id":"z1","speaker":"zippy","text":"I saw it first!","start":1.85,"duration":1.15},
+    {"id":"m1","speaker":"mimi","text":"Rock, paper, scissors.","start":4.05,"duration":1.35},
+    {"id":"k2","speaker":"kstick","text":"Rock! Paper! Scissors!","start":7.1,"duration":1.45},
+    {"id":"z2","speaker":"zippy","text":"Rock! Paper! Scissors!","start":7.15,"duration":1.45},
+    {"id":"k3","speaker":"kstick","text":"Where's the pizza?!","start":14.45,"duration":1.35},
+    {"id":"z3","speaker":"zippy","text":"You ate it!","start":16.05,"duration":1.0},
+    {"id":"m2","speaker":"mimi","text":"Good game.","start":18.35,"duration":0.95}
   ]
 }
