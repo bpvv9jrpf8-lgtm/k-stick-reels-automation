@@ -1,24 +1,46 @@
 {
-  "topic": "The Ketchup Packet That Picked Its Target",
-  "hook_text": "WRONG TARGET",
-  "background": "Simple kitchen with a table, burger, ketchup packet, and one chair.",
-  "scene_1": "K-Stick places a burger on the table and carefully tears open a ketchup packet.",
-  "scene_1_caption": "Just One Squeeze",
-  "scene_2": "He squeezes the packet with both hands, but the ketchup shoots backward onto his white face.",
-  "scene_2_caption": "It Fired Back",
-  "scene_3": "K-Stick calmly lifts the burger for a bite while ketchup drips from his face like a bright red moustache.",
-  "scene_3_caption": "Burger Still Dry",
-  "twist_ending": "The burger has no ketchup at all, while K-Stick accidentally wears the entire serving on his face.",
-  "twist_caption": "Personal Ketchup Moustache",
-  "narration": "K-Stick carefully opens the ketchup packet. One squeeze later, his burger stays dry—but his face gets a very delicious makeover.",
-  "reaction_text": "Seriously?",
-  "video_title": "K-Stick and the Ketchup Packet That Picked Its Target",
-  "facebook_caption": "K-Stick wanted ketchup on his burger. The ketchup had other plans.",
-  "youtube_description": "K-Stick tries to add ketchup to his burger, but the packet fires backward and gives him a surprise moustache instead!",
+  "topic": "K-Stick and the Runaway Burger",
+  "hook_text": "LUNCH RUNS AWAY",
+  "background": "kitchen",
+  "scenes": [
+    {
+      "action": "K-Stick proudly spots a burger.",
+      "caption": "Perfect lunch!",
+      "pose": "standing",
+      "expression": "happy",
+      "prop": "burger"
+    },
+    {
+      "action": "K-Stick points as the burger rolls away.",
+      "caption": "Hey, come back!",
+      "pose": "pointing",
+      "expression": "shocked",
+      "prop": "burger"
+    },
+    {
+      "action": "K-Stick runs after the burger.",
+      "caption": "My lunch is escaping!",
+      "pose": "running",
+      "expression": "shocked",
+      "prop": "burger"
+    },
+    {
+      "action": "K-Stick falls as the burger lands on his cap.",
+      "caption": "Finally caught it!",
+      "pose": "falling",
+      "expression": "shocked",
+      "prop": "burger"
+    }
+  ],
+  "narration": "K-Stick finds the perfect lunch. Then it rolls away. He chases it, trips, and somehow catches the burger perfectly—on his cap.",
+  "reaction_text": "Best hat ever!",
+  "video_title": "K-Stick’s Runaway Burger",
+  "facebook_caption": "K-Stick just invented the tastiest hat in town. 🍔😂",
+  "youtube_description": "K-Stick’s lunch rolls away, but his unlucky chase ends with a hilarious burger hat!",
   "hashtags": [
     "#KStick",
     "#FunnyCartoon",
-    "#StickFigure",
-    "#FamilyFriendly"
+    "#Shorts",
+    "#Comedy"
   ]
 }
