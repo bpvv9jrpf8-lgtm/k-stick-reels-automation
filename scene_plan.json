@@ -1,38 +1,56 @@
 {
-  "topic": "K-Stick and the Chair That Needs a Break",
-  "hook_text": "K-Stick finds a chair... but the chair is already tired!",
-  "background": "assets/backgrounds/classroom.png",
+  "topic": "K-Stick and the Self-Checkout That Scans Him",
+  "hook_text": "Unexpected item in the bagging area!",
+  "background": "street",
+  "background_asset": "assets/backgrounds/street.png",
+  "video_title": "When the Checkout Scans YOU",
+  "facebook_caption": "K-Stick went shopping for an apple and somehow became the unexpected item! 😂",
+  "youtube_description": "K-Stick tries a simple self-checkout, but the machine has a very unusual idea of what belongs in the bagging area. A quick, family-friendly stickman comedy reel.",
+  "hashtags": [
+    "#KStick",
+    "#StickmanComedy",
+    "#FunnyReel",
+    "#SelfCheckout"
+  ],
   "scenes": [
     {
       "scene_number": 1,
-      "duration_seconds": 3,
-      "story_text": "K-Stick walks into the classroom, sees the empty chair, and happily points at it. He says, 'Perfect!'",
+      "duration_seconds": 3.5,
+      "story_text": "K-Stick confidently scans an apple and gives a thumbs-up as the kiosk beeps.",
+      "background_asset": "assets/backgrounds/street.png",
       "character_asset": "assets/transparent/k_stick_happy_transparent.png",
-      "background_asset": "assets/backgrounds/classroom.png",
+      "asset_type": "expression",
+      "pose": "standing",
       "expression": "happy"
     },
     {
       "scene_number": 2,
-      "duration_seconds": 3,
-      "story_text": "As K-Stick pulls the chair out, it suddenly unfolds a tiny sign reading 'OUT OF ENERGY' and slowly flops sideways.",
+      "duration_seconds": 3.5,
+      "story_text": "The kiosk flashes: \"Unexpected item in bagging area!\" K-Stick checks the bag, but it is empty.",
+      "background_asset": "assets/backgrounds/street.png",
       "character_asset": "assets/transparent/k_stick_happy_transparent.png",
-      "background_asset": "assets/backgrounds/classroom.png",
+      "asset_type": "expression",
+      "pose": "standing",
       "expression": "happy"
     },
     {
       "scene_number": 3,
-      "duration_seconds": 3,
-      "story_text": "K-Stick looks shocked, then gently places a tiny paper cup beside the chair like he is giving it a break.",
-      "character_asset": "assets/transparent/k_stick_shocked_transparent.png",
-      "background_asset": "assets/backgrounds/classroom.png",
-      "expression": "shocked"
+      "duration_seconds": 3.5,
+      "story_text": "K-Stick slowly steps away, and the kiosk suddenly says: \"Please place K-Stick in the bagging area.\"",
+      "background_asset": "assets/backgrounds/street.png",
+      "character_asset": "assets/transparent/k_stick_happy_transparent.png",
+      "asset_type": "expression",
+      "pose": "standing",
+      "expression": "happy"
     },
     {
       "scene_number": 4,
-      "duration_seconds": 4,
-      "story_text": "K-Stick finally sits on the floor instead. The chair instantly pops upright, sits on the floor beside him, and displays a new sign: 'Much better!'",
+      "duration_seconds": 4.5,
+      "story_text": "K-Stick gasps, then places only his red cap in the bag; the kiosk proudly says: \"Thank you for your purchase!\"",
+      "background_asset": "assets/backgrounds/street.png",
       "character_asset": "assets/transparent/k_stick_happy_transparent.png",
-      "background_asset": "assets/backgrounds/classroom.png",
+      "asset_type": "expression",
+      "pose": "standing",
       "expression": "happy"
     }
   ]

@@ -1,23 +1,23 @@
 {
-  "topic": "K-Stick and the Chair That Needs a Break",
-  "hook_text": "K-Stick finds a chair... but the chair is already tired!",
-  "background": "Simple classroom corner with a plain floor, small desk, and one chair",
-  "main_expression": "Curious surprise turning into exaggerated confusion",
-  "main_pose": "K-Stick leans forward with one hand on his chin, then reaches toward the chair",
-  "prop": "A simple school chair with tiny cartoon eyes and a miniature 'OUT OF ENERGY' sign",
-  "scene_1": "K-Stick walks into the classroom, sees the empty chair, and happily points at it. He says, 'Perfect!'",
-  "scene_2": "As K-Stick pulls the chair out, it suddenly unfolds a tiny sign reading 'OUT OF ENERGY' and slowly flops sideways.",
-  "scene_3": "K-Stick looks shocked, then gently places a tiny paper cup beside the chair like he is giving it a break.",
-  "twist_ending": "K-Stick finally sits on the floor instead. The chair instantly pops upright, sits on the floor beside him, and displays a new sign: 'Much better!'",
-  "video_title": "K-Stick and the Chair That Needed a Break",
-  "facebook_caption": "Even chairs need a little rest sometimes! 😂🪑",
-  "youtube_description": "K-Stick just wants to sit down, but this exhausted classroom chair has other plans. A quick, silly stickman adventure with a very dramatic piece of furniture!",
+  "topic": "K-Stick and the Self-Checkout That Scans Him",
+  "hook_text": "Unexpected item in the bagging area!",
+  "background": "Simple grocery store checkout with a self-checkout kiosk and one shopping bag",
+  "main_expression": "Confident smile turning into wide-eyed confusion",
+  "main_pose": "Standing proudly beside the scanner while holding one small grocery item",
+  "prop": "Self-checkout scanner, shopping bag, and one apple",
+  "scene_1": "K-Stick confidently scans an apple and gives a thumbs-up as the kiosk beeps.",
+  "scene_2": "The kiosk flashes: \"Unexpected item in bagging area!\" K-Stick checks the bag, but it is empty.",
+  "scene_3": "K-Stick slowly steps away, and the kiosk suddenly says: \"Please place K-Stick in the bagging area.\"",
+  "twist_ending": "K-Stick gasps, then places only his red cap in the bag; the kiosk proudly says: \"Thank you for your purchase!\"",
+  "video_title": "When the Checkout Scans YOU",
+  "facebook_caption": "K-Stick went shopping for an apple and somehow became the unexpected item! 😂",
+  "youtube_description": "K-Stick tries a simple self-checkout, but the machine has a very unusual idea of what belongs in the bagging area. A quick, family-friendly stickman comedy reel.",
   "hashtags": [
     "#KStick",
     "#StickmanComedy",
-    "#FunnyReels",
-    "#FamilyFriendly"
+    "#FunnyReel",
+    "#SelfCheckout"
   ],
-  "image_prompt": "A clean 2D cartoon frame for a family-friendly stickman comedy reel: K-Stick is a simple black stickman with a round white face, huge expressive eyes, and a signature red cap, standing in a minimal classroom corner beside a plain school chair with tiny cartoon eyes and a small sign reading 'OUT OF ENERGY'. Bold black outlines, flat colors, simple reusable background, humorous surprised expression, no copyrighted characters, vertical 9:16 composition.",
-  "motion_prompt": "15-second fast-paced 2D animation: K-Stick walks into a simple classroom and points excitedly at an empty chair. He pulls it out, and the chair suddenly unfolds a tiny 'OUT OF ENERGY' sign before flopping sideways. K-Stick reacts with wide eyes, places a tiny paper cup beside it, then sits on the floor. The chair instantly pops upright, sits beside him, and changes the sign to 'Much better!'. Use simple squash-and-stretch, quick reaction timing, light comedic sound effects, reusable background, and clear readable actions."
+  "image_prompt": "A clean 2D family-friendly cartoon frame featuring K-Stick, a simple black stickman with a round white face, huge expressive eyes, and a signature red cap, standing at a basic grocery store self-checkout kiosk. He holds one red apple beside an empty shopping bag. Minimal reusable background, bold simple outlines, bright colors, comedic confused expression, no brand logos, vertical 9:16 composition.",
+  "motion_prompt": "15-second fast-paced 2D stickman animation in three beats: K-Stick scans an apple and confidently gives a thumbs-up; the kiosk flashes a warning and K-Stick nervously checks the empty bag; he steps away as the kiosk identifies him as the unexpected item. He reacts with wide eyes, places only his red cap into the bag, and the kiosk gives a happy confirmation beep. Use simple poses, quick zooms, readable text, squash-and-stretch reactions, and a cheerful comedic sound effect."
 }
