@@ -50,215 +50,88 @@ PROP_FILES = {
     "kiosk": "assets/props/kiosk.png",
 }
 
-
-def has(text, *terms):
-    text = text.lower()
-    return any(term in text for term in terms)
+DURATIONS = [3.25, 3.25, 3.25, 5.25]
 
 
-def choose_pose(text):
-    if has(text, "fall", "falls", "fell", "slip", "trip"):
-        return "falling"
-
-    if has(text, "run", "runs", "running", "rush"):
-        return "running"
-
-    if has(text, "walk", "walks", "walking"):
-        return "walking"
-
-    if has(text, "sit", "sits", "sitting", "sat"):
-        return "sitting"
-
-    if has(text, "sleep", "sleeps", "sleeping", "lies down", "lying"):
-        return "sleeping"
-
-    if has(text, "point", "points", "pointing"):
-        return "pointing"
-
-    if has(text, "phone", "smartphone", "texting"):
-        return "phone"
-
-    if has(text, "laptop", "typing", "working at"):
-        return "working"
-
-    if has(text, "hide", "hides", "hiding", "crouch"):
-        return "hiding"
-
-    if has(text, "celebrate", "celebrates", "victory", "wins"):
-        return "celebrating"
-
-    if has(text, "confused", "shrug"):
-        return "confused"
-
-    return None
-
-
-def choose_expression(text):
-    if has(text, "shock", "surprise", "panic", "scared"):
-        return "shocked"
-
-    if has(text, "angry", "mad", "furious", "annoyed"):
-        return "angry"
-
-    if has(text, "sad", "cry", "upset", "tears"):
-        return "sad"
-
-    if has(text, "sleepy", "tired", "yawn"):
-        return "sleepy"
-
-    return "happy"
-
-
-def choose_character(text):
-    pose = choose_pose(text)
-
-    if pose and os.path.exists(POSE_FILES.get(pose, "")):
-        return POSE_FILES[pose], pose, None
-
-    expression = choose_expression(text)
-
-    return (
-        EXPRESSION_FILES[expression],
-        "standing",
-        expression
-    )
-
-
-def choose_prop(text):
-    rules = [
-        ("apple", ["apple"]),
-        ("phone", ["phone", "smartphone"]),
-        ("laptop", ["laptop", "computer"]),
-        ("chair", ["chair"]),
-        ("pillow", ["pillow"]),
-        ("alarm_clock", ["alarm", "clock"]),
-        ("shopping_bag", ["bagging", "shopping bag", "grocery bag"]),
-        ("burger", ["burger"]),
-        ("book", ["book"]),
-        ("stool", ["stool"]),
-        ("scanner", ["scanner", "barcode", "scan"]),
-        ("kiosk", ["kiosk", "checkout"]),
-    ]
-
-    lowered = text.lower()
-
-    for name, keywords in rules:
-        if any(keyword in lowered for keyword in keywords):
-            path = PROP_FILES[name]
-
-            if os.path.exists(path):
-                return name, path
-
-    return None, None
-
-
-def choose_background(story):
-    requested = story.get("background", "").lower()
-
-    for key in BACKGROUND_FILES:
-        if key in requested:
-            return key
-
-    text = " ".join([
-        story.get("scene_1", ""),
-        story.get("scene_2", ""),
-        story.get("scene_3", ""),
-        story.get("twist_ending", "")
-    ]).lower()
-
-    if has(text, "bed", "sleep", "alarm", "pillow"):
-        return "bedroom"
-
-    if has(text, "class", "teacher", "school", "exam"):
-        return "classroom"
-
-    if has(text, "office", "boss", "work", "laptop"):
-        return "office"
-
-    if has(text, "kitchen", "fridge", "burger", "food"):
-        return "kitchen"
-
-    return "street"
-
-
-def caption_limit(text):
-    words = text.split()[:5]
-    return " ".join(words)
+def require_file(path, label):
+    if not path or not os.path.exists(path):
+        raise FileNotFoundError(f"Missing {label}: {path}")
+    return path
 
 
 def main():
     with open(STORY_FILE, "r", encoding="utf-8") as f:
         story = json.load(f)
 
-    bg_key = choose_background(story)
-    bg_asset = BACKGROUND_FILES[bg_key]
+    background_name = story.get("background", "street")
+    background_asset = require_file(
+        BACKGROUND_FILES.get(background_name),
+        f"background '{background_name}'",
+    )
 
-    scene_data = [
-        (
-            story.get("scene_1", ""),
-            story.get("scene_1_caption", "")
-        ),
-        (
-            story.get("scene_2", ""),
-            story.get("scene_2_caption", "")
-        ),
-        (
-            story.get("scene_3", ""),
-            story.get("scene_3_caption", "")
-        ),
-        (
-            story.get("twist_ending", ""),
-            story.get("twist_caption", "")
-        ),
-    ]
-
-    durations = [
-        3.3,
-        3.3,
-        3.3,
-        5.1
-    ]
+    scenes = story.get("scenes", [])
+    if len(scenes) != 4:
+        raise ValueError("latest_story.json must contain exactly 4 scenes")
 
     plan = {
         "topic": story.get("topic", ""),
-        "hook_text": " ".join(
-            story.get("hook_text", "WAIT FOR IT").split()[:4]
-        ),
-        "reaction_text": story.get("reaction_text", "What?!"),
+        "hook_text": " ".join(story.get("hook_text", "WAIT FOR IT").split()[:4]),
+        "reaction_text": " ".join(story.get("reaction_text", "WHAT?!").split()[:4]),
         "reaction_start": 11.0,
-        "background_asset": bg_asset,
+        "background": background_name,
+        "background_asset": background_asset,
         "video_title": story.get("video_title", ""),
         "facebook_caption": story.get("facebook_caption", ""),
         "youtube_description": story.get("youtube_description", ""),
         "hashtags": story.get("hashtags", []),
-        "scenes": []
+        "scenes": [],
     }
 
-    for index, (text, caption) in enumerate(scene_data):
-        character_asset, pose, expression = choose_character(text)
+    for index, scene in enumerate(scenes):
+        pose = scene.get("pose", "standing")
+        expression = scene.get("expression", "happy")
+        prop = scene.get("prop", "none")
 
-        prop_name, prop_asset = choose_prop(text)
+        pose_path = POSE_FILES.get(pose)
+        expression_path = EXPRESSION_FILES.get(expression)
+
+        # Prefer an action pose when it exists. If a pose file is missing, fall back
+        # to the expression asset instead of crashing the reel build.
+        if pose_path and os.path.exists(pose_path):
+            character_asset = pose_path
+            asset_type = "pose"
+        else:
+            character_asset = require_file(
+                expression_path,
+                f"expression '{expression}'",
+            )
+            asset_type = "expression"
+
+        prop_asset = None
+        if prop != "none":
+            candidate = PROP_FILES.get(prop)
+            if candidate and os.path.exists(candidate):
+                prop_asset = candidate
+            else:
+                print(f"Warning: prop asset '{prop}' missing; scene will render without it")
+                prop = "none"
 
         plan["scenes"].append({
             "scene_number": index + 1,
-            "duration_seconds": durations[index],
-            "story_text": text,
-            "short_caption": caption_limit(caption),
-            "background_asset": bg_asset,
+            "duration_seconds": DURATIONS[index],
+            "story_text": scene.get("action", ""),
+            "short_caption": " ".join(scene.get("caption", "").split()[:5]),
+            "background_asset": background_asset,
             "character_asset": character_asset,
+            "asset_type": asset_type,
             "pose": pose,
             "expression": expression,
-            "prop": prop_name,
-            "prop_asset": prop_asset
+            "prop": prop,
+            "prop_asset": prop_asset,
         })
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(
-            plan,
-            f,
-            indent=2,
-            ensure_ascii=False
-        )
+        json.dump(plan, f, indent=2, ensure_ascii=False)
 
     print(json.dumps(plan, indent=2, ensure_ascii=False))
 
