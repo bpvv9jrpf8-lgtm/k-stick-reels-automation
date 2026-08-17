@@ -49,6 +49,8 @@ jobs:
           ffmpeg -y -f lavfi -i "anoisesrc=color=pink:duration=0.55:amplitude=0.15" -af "highpass=f=500,lowpass=f=6000,afade=t=in:st=0:d=0.06,afade=t=out:st=0.32:d=0.23" public/sfx/whoosh.wav
           ffmpeg -y -f lavfi -i "sine=frequency=180:duration=0.55" -af "volume=0.55,afade=t=out:st=0.30:d=0.25" public/sfx/record.wav
           ffmpeg -y -f lavfi -i "sine=frequency=1040:duration=0.38" -af "volume=0.55,afade=t=out:st=0.18:d=0.20" public/sfx/ding.wav
+          ffmpeg -y -f lavfi -i "anoisesrc=color=brown:duration=0.48:amplitude=0.28" -af "highpass=f=120,lowpass=f=1450,afade=t=out:st=0.23:d=0.25,volume=0.72" public/sfx/munch.wav
+          ffmpeg -y -f lavfi -i "sine=frequency=760:duration=0.46" -af "tremolo=f=12:d=0.55,afade=t=in:st=0:d=0.04,afade=t=out:st=0.24:d=0.22,volume=0.48" public/sfx/gasp.wav
 
       - name: Render K-Stick V2 MP4
         working-directory: v2
@@ -60,3 +62,5 @@ jobs:
           name: k-stick-v2-animation
           path: v2/out/k-stick-v2.mp4
           retention-days: 7
+
+# V2.1: jointed rigs, RPS hand beats, prop-to-hand animation, kinetic captions, cinematic camera cuts.
