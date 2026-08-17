@@ -1,5 +1,4 @@
-name: K-Stick Reel V3
-
+name: k-stick-reel-final
 on:
   workflow_dispatch:
 
@@ -50,7 +49,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: k-stick-reel-v3
-          path: output/k_stick_reel_v2.mp4
+          path: output/k_stick_reel_final.mp4
           retention-days: 7
 
       - name: Save generated files
