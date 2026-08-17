@@ -1,4 +1,4 @@
-name: K-Stick Test
+name: K-Stick Reel V2
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ permissions:
   contents: write
 
 jobs:
-  test:
+  build-reel:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,60 +27,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ffmpeg
 
-      - name: Generate K-Stick base character
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_character.py
-
-      - name: Generate K-Stick happy expression
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_expression.py happy
-
-      - name: Generate K-Stick sad expression
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_expression.py sad
-
-      - name: Generate K-Stick angry expression
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_expression.py angry
-
-      - name: Generate K-Stick shocked expression
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_expression.py shocked
-
-      - name: Generate K-Stick sleepy expression
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_expression.py sleepy
-
-      - name: Generate bedroom background
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_background.py bedroom
-
-      - name: Generate office background
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_background.py office
-
-      - name: Generate classroom background
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_background.py classroom
-
-      - name: Generate kitchen background
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_background.py kitchen
-
-      - name: Generate street background
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python generate_background.py street
+      # IMPORTANT:
+      # We reuse the existing character, expressions and backgrounds.
+      # They are NOT regenerated on every run.
 
       - name: Generate new K-Stick story
         env:
@@ -90,38 +39,31 @@ jobs:
       - name: Build scene plan
         run: python plan_scenes.py
 
-      - name: Build reel video
+      - name: Generate AI voiceover
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python generate_voice.py
+
+      - name: Build 15-second reel
         run: python build_reel.py
 
       - name: Upload reel artifact
         uses: actions/upload-artifact@v4
         with:
-          name: k-stick-reel
-          path: output/k_stick_reel.mp4
+          name: k-stick-reel-v2
+          path: output/k_stick_reel_v2.mp4
+          retention-days: 7
 
-      - name: Save generated files
+      - name: Save successful story history
         run: |
           git config user.name "k-stick-bot"
           git config user.email "k-stick-bot@users.noreply.github.com"
 
-          git add used_topics.json \
-            latest_story.json \
-            scene_plan.json \
-            assets/character/k_stick_base.png \
-            assets/expressions/k_stick_happy.png \
-            assets/expressions/k_stick_sad.png \
-            assets/expressions/k_stick_angry.png \
-            assets/expressions/k_stick_shocked.png \
-            assets/expressions/k_stick_sleepy.png \
-            assets/backgrounds/bedroom.png \
-            assets/backgrounds/office.png \
-            assets/backgrounds/classroom.png \
-            assets/backgrounds/kitchen.png \
-            assets/backgrounds/street.png
+          git add used_topics.json latest_story.json scene_plan.json
 
           if git diff --cached --quiet; then
-            echo "No changes to save."
+            echo "No history changes to save."
           else
-            git commit -m "Generate K-Stick reel assets"
+            git commit -m "Save successful K-Stick reel story"
             git push
           fi
