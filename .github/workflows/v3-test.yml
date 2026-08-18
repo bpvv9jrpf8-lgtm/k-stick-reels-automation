@@ -1,0 +1,67 @@
+name: K-Stick V3 Procedural Animation Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v3-test.yml'
+
+jobs:
+  render-v3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout V3 engine branch
+        uses: actions/checkout@v4
+        with:
+          ref: v3-engine
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install FFmpeg and Python dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-dejavu-core
+          pip install -r v3/requirements.txt
+
+      - name: Build reusable comedy SFX
+        run: |
+          mkdir -p v3/sfx
+          ffmpeg -y -f lavfi -i "sine=frequency=380:duration=0.18" -af "volume=0.35,afade=t=out:st=0.08:d=0.10" v3/sfx/pop.wav
+          ffmpeg -y -f lavfi -i "anoisesrc=color=pink:duration=0.7" -af "highpass=f=500,lowpass=f=2500,volume=0.12,afade=t=out:st=0.35:d=0.35" v3/sfx/sneak.wav
+          ffmpeg -y -f lavfi -i "anoisesrc=color=white:duration=0.22" -af "lowpass=f=900,volume=0.22,afade=t=out:st=0.08:d=0.12" v3/sfx/bite.wav
+          ffmpeg -y -f lavfi -i "sine=frequency=900:duration=0.45" -af "asetrate=44100*0.55,aresample=44100,volume=0.24" v3/sfx/record.wav
+          ffmpeg -y -f lavfi -i "sine=frequency=120:duration=0.28" -af "volume=0.42,afade=t=out:st=0.10:d=0.16" v3/sfx/bonk.wav
+          ffmpeg -y -f lavfi -i "anoisesrc=color=brown:duration=0.40" -af "lowpass=f=500,volume=0.30,afade=t=out:st=0.12:d=0.25" v3/sfx/fall.wav
+          ffmpeg -y -f lavfi -i "sine=frequency=520:duration=0.55" -af "tremolo=f=7:d=0.75,volume=0.16" v3/sfx/laugh.wav
+
+      - name: Generate character dialogue
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_VOICE_KSTICK: ${{ secrets.ELEVENLABS_VOICE_KSTICK }}
+          ELEVENLABS_VOICE_ZIPPY: ${{ secrets.ELEVENLABS_VOICE_ZIPPY }}
+          ELEVENLABS_VOICE_MIMI: ${{ secrets.ELEVENLABS_VOICE_MIMI }}
+        run: python v3/generate_voice.py
+
+      - name: Render procedural animation
+        run: python v3/render.py
+
+      - name: Mix dialogue and SFX
+        run: python v3/mix_audio.py
+
+      - name: Verify output
+        run: |
+          test -s v3/out/k-stick-v3.mp4
+          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 v3/out/k-stick-v3.mp4
+
+      - name: Upload V3 sample
+        uses: actions/upload-artifact@v4
+        with:
+          name: k-stick-v3-procedural-sample
+          path: v3/out/k-stick-v3.mp4
+          retention-days: 7
