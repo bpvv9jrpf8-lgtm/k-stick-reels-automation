@@ -1,5 +1,6 @@
 name: K-Stick V3 Procedural Animation Test
 
+# V3 procedural sample render trigger 2026-08-18
 on:
   workflow_dispatch:
   push:
