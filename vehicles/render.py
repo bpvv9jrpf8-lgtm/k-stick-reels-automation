@@ -27,20 +27,16 @@ def local_p(b,t): return clamp((t-b['start'])/(b['end']-b['start']))
 
 def background(draw, b, t):
     draw.rectangle((0,0,W,H),fill=SKY)
-    # clouds
     for cx,cy,s in [(110,170,1.0),(510,130,0.8)]:
         draw.ellipse((cx-55*s,cy-22*s,cx+15*s,cy+28*s),fill='white')
         draw.ellipse((cx-10*s,cy-38*s,cx+60*s,cy+26*s),fill='white')
         draw.ellipse((cx+35*s,cy-18*s,cx+90*s,cy+28*s),fill='white')
     draw.rectangle((0,520,W,820),fill=GRASS)
-    # hills
     draw.pieslice((-180,300,380,760),180,360,fill=(94,172,77))
     draw.pieslice((330,330,930,790),180,360,fill=(87,164,75))
-    # road
     draw.polygon([(0,760),(W,710),(W,H),(0,H)],fill=ROAD)
     for x in range(-100,900,180):
         draw.rounded_rectangle((x,980,x+90,997),8,fill=(246,225,100))
-    # mud pit
     if b.get('scene')=='mud':
         draw.ellipse((235,920,495,1075),fill=(89,58,37),outline=(70,44,29),width=6)
         draw.ellipse((275,946,455,1048),fill=MUD)
@@ -68,7 +64,6 @@ def eyes(draw, x, y, scale, emotion='happy', look=0):
         rr=8*scale
         draw.ellipse((px-rr,py-rr,px+rr,py+rr),fill=(25,35,45))
         draw.ellipse((px-rr*0.35,py-rr*0.45,px,py-rr*0.1),fill='white')
-    # brows / mouth
     if emotion in ('worried','sad'):
         draw.line((x-42*scale,y-36*scale,x-10*scale,y-46*scale),fill=(35,45,60),width=max(3,int(5*scale)))
         draw.line((x+10*scale,y-46*scale,x+42*scale,y-36*scale),fill=(35,45,60),width=max(3,int(5*scale)))
@@ -82,10 +77,7 @@ def eyes(draw, x, y, scale, emotion='happy', look=0):
 
 
 def car(draw, x, y, color, emotion, p, action, scale=1.0, kind='car'):
-    # animated suspension and tilt
-    bounce=0
-    tilt=0
-    wheel_rot=0
+    bounce=0; wheel_rot=0
     if action in ('drive','drive_left','tow','pull'):
         bounce=math.sin(p*math.pi*10)*5*scale; wheel_rot=p*math.pi*12
     elif action=='spin':
@@ -95,9 +87,7 @@ def car(draw, x, y, color, emotion, p, action, scale=1.0, kind='car'):
     elif action=='bounce':
         bounce=abs(math.sin(p*math.pi*5))*10*scale
     x=float(x); y=float(y-bounce)
-    # shadow
-    draw.ellipse((x-110*scale,y+72*scale,x+110*scale,y+100*scale),fill=(64,64,64,80))
-    # wheels behind body
+    draw.ellipse((x-110*scale,y+72*scale,x+110*scale,y+100*scale),fill=(73,76,81))
     wheel(draw,x-70*scale,y+62*scale,30*scale,wheel_rot)
     wheel(draw,x+70*scale,y+62*scale,30*scale,wheel_rot)
     if kind=='car':
@@ -106,23 +96,19 @@ def car(draw, x, y, color, emotion, p, action, scale=1.0, kind='car'):
         draw.rounded_rectangle((x-33*scale,y-69*scale,x+48*scale,y-26*scale),10*scale,fill=(176,225,250),outline=(55,80,100),width=max(3,int(4*scale)))
         eyes(draw,x+8*scale,y-48*scale,0.62*scale,emotion,look=0.35)
     elif kind=='truck':
-        # rescue truck
         draw.rounded_rectangle((x-125*scale,y-12*scale,x+15*scale,y+65*scale),18*scale,fill=(195,35,42),outline=(45,52,60),width=max(4,int(6*scale)))
         draw.rounded_rectangle((x-15*scale,y-70*scale,x+105*scale,y+65*scale),18*scale,fill=color,outline=(45,52,60),width=max(4,int(6*scale)))
         draw.rounded_rectangle((x+5*scale,y-56*scale,x+86*scale,y-12*scale),10*scale,fill=(176,225,250),outline=(55,80,100),width=max(3,int(4*scale)))
         draw.rectangle((x-90*scale,y-42*scale,x-30*scale,y-20*scale),fill=(245,245,245))
         draw.rectangle((x-70*scale,y-62*scale,x-50*scale,y-2*scale),fill=(245,245,245))
         eyes(draw,x+45*scale,y-35*scale,0.55*scale,emotion,look=-0.15)
-        # beacon
         draw.rounded_rectangle((x+25*scale,y-90*scale,x+62*scale,y-72*scale),8*scale,fill=(255,196,55),outline=(80,70,30),width=3)
     else:
-        # dump truck
         draw.rounded_rectangle((x-105*scale,y-10*scale,x+90*scale,y+65*scale),18*scale,fill=color,outline=(45,52,60),width=max(4,int(6*scale)))
         draw.polygon([(x-125*scale,y-73*scale),(x+15*scale,y-73*scale),(x+45*scale,y-12*scale),(x-105*scale,y-12*scale)],fill=(244,188,35),outline=(45,52,60))
         draw.rounded_rectangle((x+30*scale,y-62*scale,x+105*scale,y+65*scale),16*scale,fill=(252,199,45),outline=(45,52,60),width=max(4,int(6*scale)))
         draw.rounded_rectangle((x+42*scale,y-49*scale,x+92*scale,y-12*scale),8*scale,fill=(176,225,250),outline=(55,80,100),width=max(3,int(4*scale)))
         eyes(draw,x+67*scale,y-33*scale,0.48*scale,emotion,look=-0.2)
-    # bumpers and highlights
     draw.rounded_rectangle((x-112*scale,y+44*scale,x-76*scale,y+56*scale),5*scale,fill=(230,235,238))
     return (x,y)
 
@@ -155,19 +141,14 @@ for fi in range(int(DUR*FPS)):
     background(d,b,t)
     st_blue=state_for('blue',b,t); st_red=state_for('red',b,t); st_yellow=state_for('yellow',b,t)
     pos={}
-    if st_blue:
-        pos['blue']=car(d,st_blue['x']*W,870,(55,135,235),st_blue['emotion'],st_blue['p'],st_blue['action'],1.0,'car')
-    if st_red:
-        pos['red']=car(d,st_red['x']*W,845,(225,53,57),st_red['emotion'],st_red['p'],st_red['action'],1.03,'truck')
-    if st_yellow:
-        pos['yellow']=car(d,st_yellow['x']*W,850,(250,195,45),st_yellow['emotion'],st_yellow['p'],st_yellow['action'],1.03,'dump')
-    # tow rope visual
+    if st_blue: pos['blue']=car(d,st_blue['x']*W,870,(55,135,235),st_blue['emotion'],st_blue['p'],st_blue['action'],1.0,'car')
+    if st_red: pos['red']=car(d,st_red['x']*W,845,(225,53,57),st_red['emotion'],st_red['p'],st_red['action'],1.03,'truck')
+    if st_yellow: pos['yellow']=car(d,st_yellow['x']*W,850,(250,195,45),st_yellow['emotion'],st_yellow['p'],st_yellow['action'],1.03,'dump')
     if b.get('tow') and 'blue' in pos and 'red' in pos:
         bx,by=pos['blue']; rx,ry=pos['red']
         d.line((bx+112,by+38,rx-130,ry+38),fill=(70,55,40),width=8)
         d.ellipse((bx+103,by+29,bx+121,by+47),outline=(230,195,80),width=5)
         d.ellipse((rx-139,ry+29,rx-121,ry+47),outline=(230,195,80),width=5)
-    # mud splash for spinning vehicle
     for key,st in [('blue',st_blue),('yellow',st_yellow)]:
         if st and st['action']=='spin' and key in pos:
             x,y=pos[key]
@@ -176,12 +157,10 @@ for fi in range(int(DUR*FPS)):
                 rr=45+35*abs(math.sin(st['p']*math.pi*10+j))
                 sx=x-65+math.cos(a)*rr; sy=y+70-math.sin(a)*rr
                 d.ellipse((sx-9,sy-7,sx+9,sy+7),fill=(120,78,44))
-    # hook text only at beginning; no reading required after hook
     if t<2.2:
         txt=EP['hook']; box=d.textbbox((0,0),txt,font=F_BIG); tw=box[2]-box[0]
         d.rounded_rectangle((W/2-tw/2-26,50,W/2+tw/2+26,126),22,fill=(24,28,35))
         d.text((W/2-tw/2,61),txt,font=F_BIG,fill='white')
-    # visual labels for first appearance only
     if 8.3<t<10.3 and st_red:
         d.rounded_rectangle((405,250,675,302),16,fill=(255,255,255))
         d.text((430,260),'RESCUE TRUCK!',font=F_SMALL,fill=(200,40,45))
