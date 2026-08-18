@@ -1,0 +1,17 @@
+{
+  "title": "The Fake Burger",
+  "hook": "DON'T TOUCH IT",
+  "duration": 24,
+  "background": "kitchen",
+  "characters": ["kstick", "zippy", "mimi"],
+  "beats": [
+    {"start": 0.0, "end": 2.2, "camera": "wide", "actions": [{"character": "kstick", "action": "point", "x": 0.28, "emotion": "angry"}, {"character": "zippy", "action": "idle", "x": 0.68, "emotion": "smug"}], "dialogue": [{"speaker": "kstick", "text": "Don't touch my burger!", "start": 0.55, "duration": 1.35}], "prop": {"name": "burger", "action": "table", "x": 0.50}},
+    {"start": 2.2, "end": 5.4, "camera": "medium", "actions": [{"character": "kstick", "action": "walk_right", "x": 0.28, "to_x": 0.08, "emotion": "happy"}, {"character": "zippy", "action": "look_prop", "x": 0.68, "emotion": "smug"}], "dialogue": [{"speaker": "zippy", "text": "Relax...", "start": 3.25, "duration": 0.75}], "prop": {"name": "burger", "action": "table", "x": 0.50}},
+    {"start": 5.4, "end": 8.8, "camera": "push_zippy", "actions": [{"character": "zippy", "action": "sneak_left", "x": 0.68, "to_x": 0.53, "emotion": "smug"}, {"character": "mimi", "action": "enter_left", "x": 0.08, "to_x": 0.23, "emotion": "deadpan"}], "prop": {"name": "burger", "action": "table", "x": 0.50}, "sfx": ["sneak"]},
+    {"start": 8.8, "end": 11.8, "camera": "close_prop", "actions": [{"character": "mimi", "action": "swap_prop", "x": 0.23, "emotion": "deadpan"}, {"character": "zippy", "action": "reach", "x": 0.53, "emotion": "smug"}], "prop": {"name": "burger", "action": "swap_fake", "x": 0.50}, "sfx": ["pop"]},
+    {"start": 11.8, "end": 15.0, "camera": "medium", "actions": [{"character": "zippy", "action": "grab_eat", "x": 0.53, "emotion": "happy"}, {"character": "mimi", "action": "idle", "x": 0.23, "emotion": "deadpan"}], "prop": {"name": "fake_burger", "action": "hand_to_mouth", "owner": "zippy"}, "sfx": ["bite"]},
+    {"start": 15.0, "end": 18.0, "camera": "close_zippy", "actions": [{"character": "zippy", "action": "shock_recoil", "x": 0.53, "emotion": "shocked"}], "dialogue": [{"speaker": "zippy", "text": "WHY IS IT HARD?!", "start": 15.55, "duration": 1.25}], "sfx": ["record", "bonk"]},
+    {"start": 18.0, "end": 21.0, "camera": "wide", "actions": [{"character": "kstick", "action": "enter_right", "x": 0.92, "to_x": 0.76, "emotion": "worried"}, {"character": "mimi", "action": "point", "x": 0.23, "emotion": "deadpan"}, {"character": "zippy", "action": "facepalm", "x": 0.53, "emotion": "shocked"}], "dialogue": [{"speaker": "kstick", "text": "How is it?", "start": 18.65, "duration": 0.9}]},
+    {"start": 21.0, "end": 24.0, "camera": "punch_mimi", "actions": [{"character": "mimi", "action": "talk", "x": 0.23, "emotion": "deadpan"}, {"character": "zippy", "action": "fall", "x": 0.53, "emotion": "shocked"}, {"character": "kstick", "action": "laugh", "x": 0.76, "emotion": "laughing"}], "dialogue": [{"speaker": "mimi", "text": "Extra plastic.", "start": 21.35, "duration": 1.0}], "sfx": ["fall", "laugh"]}
+  ]
+}
