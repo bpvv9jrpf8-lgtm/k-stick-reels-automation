@@ -6,6 +6,10 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/kids-vehicle-test.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/kids-vehicle-test.yml'
 
 jobs:
   render:
