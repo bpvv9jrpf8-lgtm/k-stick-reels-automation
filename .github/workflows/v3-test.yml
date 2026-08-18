@@ -1,6 +1,6 @@
 name: K-Stick V3 Procedural Animation Test
 
-# V3 quality-check workflow
+# V3 quality-check workflow - PR sample
 on:
   workflow_dispatch:
   push:
