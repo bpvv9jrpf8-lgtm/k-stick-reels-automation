@@ -1,0 +1,15 @@
+{
+  "title": "Blue Car Stuck in Mud",
+  "hook": "OH NO! STUCK!",
+  "duration": 34,
+  "beats": [
+    {"start":0,"end":4,"scene":"road","blue":{"x":0.22,"to":0.48,"action":"drive","emotion":"happy"},"camera":"wide","sfx":["engine"]},
+    {"start":4,"end":8,"scene":"mud","blue":{"x":0.48,"action":"spin","emotion":"worried"},"camera":"push_blue","sfx":["splash","spin"]},
+    {"start":8,"end":12,"scene":"mud","blue":{"x":0.48,"action":"bounce","emotion":"sad"},"red":{"x":1.08,"to":0.72,"action":"drive_left","emotion":"focused"},"camera":"wide","sfx":["horn"]},
+    {"start":12,"end":17,"scene":"mud","blue":{"x":0.48,"action":"idle","emotion":"hopeful"},"red":{"x":0.72,"action":"hook","emotion":"focused"},"camera":"medium","tow":true,"sfx":["click"]},
+    {"start":17,"end":22,"scene":"mud","blue":{"x":0.48,"to":0.64,"action":"tow","emotion":"excited"},"red":{"x":0.72,"to":0.88,"action":"pull","emotion":"focused"},"camera":"wide","tow":true,"sfx":["engine","mudpop"]},
+    {"start":22,"end":26,"scene":"road","blue":{"x":0.64,"action":"celebrate","emotion":"happy"},"red":{"x":0.88,"action":"celebrate","emotion":"happy"},"yellow":{"x":-0.12,"to":0.26,"action":"drive","emotion":"happy"},"camera":"wide","sfx":["cheer"]},
+    {"start":26,"end":30,"scene":"mud","yellow":{"x":0.26,"to":0.47,"action":"drive","emotion":"happy"},"blue":{"x":0.64,"action":"idle","emotion":"curious"},"red":{"x":0.88,"action":"idle","emotion":"curious"},"camera":"wide","sfx":["splash"]},
+    {"start":30,"end":34,"scene":"mud","yellow":{"x":0.47,"action":"spin","emotion":"shocked"},"blue":{"x":0.64,"action":"laugh","emotion":"laughing"},"red":{"x":0.88,"action":"laugh","emotion":"laughing"},"camera":"punch_yellow","sfx":["spin","boing","laugh"]}
+  ]
+}
