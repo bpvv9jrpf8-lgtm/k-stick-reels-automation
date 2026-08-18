@@ -1,5 +1,6 @@
 name: Kids Vehicle Animation Test
 
+# Kids vehicle sample quality-check trigger
 on:
   workflow_dispatch:
   push:
