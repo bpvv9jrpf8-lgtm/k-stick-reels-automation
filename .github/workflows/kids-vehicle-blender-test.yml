@@ -1,4 +1,4 @@
-name: Kids Vehicle CC0 Asset Inventory
+name: Kids Vehicle Modeled Asset Motion Test
 
 on:
   workflow_dispatch:
@@ -8,19 +8,60 @@ on:
       - '.github/workflows/kids-vehicle-blender-test.yml'
 
 jobs:
-  inventory:
+  render-motion:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 18
     steps:
-      - name: Download official Kenney Car Kit
+      - name: Checkout modeled vehicle branch
+        uses: actions/checkout@v4
+        with:
+          ref: kids-vehicle-assets-v1
+
+      - name: Download official Kenney Car Kit CC0
         run: |
           curl -L --fail --retry 2 --connect-timeout 15 \
             'https://www.kenney.nl/media/pages/assets/car-kit/1a312ec241-1775131960/kenney_car-kit.zip' \
             -o car-kit.zip
           unzip -q car-kit.zip -d car-kit
-      - name: List useful vehicle models
+          test -s 'car-kit/Models/GLB format/sedan.glb'
+          test -s 'car-kit/Models/GLB format/firetruck.glb'
+
+      - name: Install Blender headless graphics libs
         run: |
-          echo '--- VEHICLE MODEL FILES ---'
-          find car-kit -type f | grep -Ei '\.(gltf|glb|fbx|obj)$' | sort | grep -Ei 'fire|tractor|sedan|truck|ambulance|police|suv|delivery|hatch' || true
-          echo '--- TOP LEVEL ---'
-          find car-kit -maxdepth 3 -type f | sort | head -160
+          if [ -f /etc/apt/sources.list.d/ubuntu.sources ]; then
+            sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list.d/ubuntu.sources
+          fi
+          if [ -f /etc/apt/sources.list ]; then
+            sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list
+          fi
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y --no-install-recommends blender libegl1 libgl1 libglx-mesa0 libopengl0 ffmpeg
+
+      - name: Prepare fast 3-second preview
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('blender3d/kenney_asset_motion_test.py')
+          s=p.read_text()
+          s=s.replace('scene.render.resolution_x=540','scene.render.resolution_x=360')
+          s=s.replace('scene.render.resolution_y=960','scene.render.resolution_y=640')
+          s=s.replace('scene.frame_start=1; scene.frame_end=72; scene.render.fps=24',
+                      'scene.frame_start=1; scene.frame_end=72; scene.frame_step=2; scene.render.fps=12')
+          p.write_text(s)
+          PY
+
+      - name: Render modeled asset sample
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          blender -b --python blender3d/kenney_asset_motion_test.py
+          test -s /tmp/kids-vehicle-kenney-motion.mp4
+          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 /tmp/kids-vehicle-kenney-motion.mp4
+          cp /tmp/kids-vehicle-kenney-motion.mp4 kids-vehicle-modeled-motion.mp4
+
+      - name: Upload modeled motion sample
+        uses: actions/upload-artifact@v4
+        with:
+          name: kids-vehicle-modeled-motion-sample
+          path: kids-vehicle-modeled-motion.mp4
+          retention-days: 3
