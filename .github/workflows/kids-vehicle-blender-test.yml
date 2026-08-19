@@ -10,7 +10,7 @@ on:
 jobs:
   render-motion:
     runs-on: ubuntu-latest
-    timeout-minutes: 18
+    timeout-minutes: 12
     steps:
       - name: Checkout modeled vehicle branch
         uses: actions/checkout@v4
@@ -26,38 +26,29 @@ jobs:
           test -s 'car-kit/Models/GLB format/sedan.glb'
           test -s 'car-kit/Models/GLB format/firetruck.glb'
 
-      - name: Install portable Blender and minimal headless dependency
-        run: |
-          curl -L --fail --retry 3 --connect-timeout 20 \
-            'https://download.blender.org/release/Blender4.3/blender-4.3.2-linux-x64.tar.xz' \
-            -o /tmp/blender.tar.xz
-          mkdir -p /tmp/blender
-          tar -xJf /tmp/blender.tar.xz -C /tmp/blender --strip-components=1
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends libegl1
-          echo '/tmp/blender' >> "$GITHUB_PATH"
-          /tmp/blender/blender --version | head -n 2
-          ldconfig -p | grep -F 'libEGL.so.1'
-
-      - name: Prepare fast 3-second preview
+      - name: Prepare ultra-fast preview
         run: |
           python - <<'PY'
           from pathlib import Path
           p=Path('blender3d/kenney_asset_motion_test.py')
           s=p.read_text()
-          s=s.replace('scene.render.resolution_x=540','scene.render.resolution_x=360')
-          s=s.replace('scene.render.resolution_y=960','scene.render.resolution_y=640')
+          s=s.replace('scene.render.resolution_x=540','scene.render.resolution_x=270')
+          s=s.replace('scene.render.resolution_y=960','scene.render.resolution_y=480')
           s=s.replace('scene.frame_start=1; scene.frame_end=72; scene.render.fps=24',
-                      'scene.frame_start=1; scene.frame_end=72; scene.frame_step=2; scene.render.fps=12')
+                      'scene.frame_start=1; scene.frame_end=48; scene.frame_step=3; scene.render.fps=8')
+          s=s.replace("'/tmp/kids-vehicle-kenney-motion.mp4'", "'/work/kids-vehicle-modeled-motion.mp4'")
+          s=s.replace("'/tmp/kids_vehicle_kenney_asset_test.blend'", "'/work/kids_vehicle_kenney_asset_test.blend'")
           p.write_text(s)
           PY
 
-      - name: Render modeled asset sample
-        env:
-          LIBGL_ALWAYS_SOFTWARE: '1'
+      - name: Render with prebuilt headless Blender container
         run: |
-          blender -b --python blender3d/kenney_asset_motion_test.py
-          test -s /tmp/kids-vehicle-kenney-motion.mp4
-          cp /tmp/kids-vehicle-kenney-motion.mp4 kids-vehicle-modeled-motion.mp4
+          docker run --rm \
+            -v "$PWD:/work" \
+            -w /work \
+            blenderkit/headless-blender:multi-version \
+            /home/headless/blenders/4.3/blender -b --python blender3d/kenney_asset_motion_test.py
+          test -s kids-vehicle-modeled-motion.mp4
           ls -lh kids-vehicle-modeled-motion.mp4
 
       - name: Upload modeled motion sample
