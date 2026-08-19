@@ -22,12 +22,14 @@ jobs:
         with:
           ref: kids-vehicles-blender-v1
 
-      - name: Install Blender and FFmpeg
+      - name: Install Blender, FFmpeg and headless graphics libs
         run: |
           sudo apt-get update
-          sudo apt-get install -y blender ffmpeg
+          sudo apt-get install -y blender ffmpeg libegl1 libgl1 libglx-mesa0 libopengl0 mesa-utils
 
       - name: Render 3D sample
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
         run: |
           mkdir -p blender3d/out
           blender -b --python blender3d/scene.py
