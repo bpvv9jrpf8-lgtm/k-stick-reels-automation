@@ -1,6 +1,6 @@
 name: Kids Vehicle Blender 3D Keyframe Test
 
-# Fast visual QA: render only four still frames before spending minutes on full video.
+# Fast final visual QA: render only four still frames before one full sample.
 on:
   workflow_dispatch:
   pull_request:
@@ -23,12 +23,24 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y blender libegl1 libgl1 libglx-mesa0 libopengl0 mesa-utils
 
-      - name: Prepare fast keyframe preview
+      - name: Prepare final visual-lock preview
         run: |
           python - <<'PY'
           from pathlib import Path
           p = Path('blender3d/scene_v5.py')
           s = p.read_text()
+          # Keep the character design, but clean the staging: no foreground tree occlusion,
+          # smaller background helpers, a clearer rescue gap, and a more readable tow rope.
+          s = s.replace("(-7,-4,.7),(6.8,-3.8,.9)", "(-7,4.9,.7),(6.8,5.1,.9)")
+          s = s.replace("helper1=car('Dumpy',YELLOW,(5.2,2.30,.05),.62,'car'); helper2=car('Tracto',GREEN,(6.6,3.00,.05),.60,'car')",
+                        "helper1=car('Dumpy',YELLOW,(5.7,3.35,.05),.48,'car'); helper2=car('Tracto',GREEN,(7.0,3.85,.05),.46,'car')")
+          s = s.replace("key(reddy,145,(1.90,-.68,.08)); key(reddy,164,(1.90,-.68,.08))",
+                        "key(reddy,145,(2.25,-.68,.08)); key(reddy,164,(2.25,-.68,.08))")
+          s = s.replace("rope=cyl('rope',(.20,-.11,.61),.043,3.55,ORANGE", "rope=cyl('rope',(.34,-.11,.61),.060,3.75,ORANGE")
+          s = s.replace("cam.location=(10.8,-18.0,7.0); look_at(cam,(1.15,-.02,1.00))",
+                        "cam.location=(9.2,-15.4,6.25); look_at(cam,(0.65,-.02,1.00))")
+          s = s.replace("cam.location=(12.0,-20.0,7.8); look_at(cam,(3.0,-.03,1.0))",
+                        "cam.location=(10.6,-17.7,7.0); look_at(cam,(3.0,-.03,1.0))")
           s = s.replace('scene.render.resolution_x=720', 'scene.render.resolution_x=360')
           s = s.replace('scene.render.resolution_y=1280', 'scene.render.resolution_y=640')
           old = "bpy.ops.render.render(animation=True)\nprint(scene.render.filepath)"
@@ -52,6 +64,6 @@ jobs:
       - name: Upload keyframe preview
         uses: actions/upload-artifact@v4
         with:
-          name: kids-vehicle-v5-keyframes
+          name: kids-vehicle-final-keyframes
           path: blender3d/out/keyframes/*.png
           retention-days: 3
