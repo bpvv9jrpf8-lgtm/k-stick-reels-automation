@@ -29,18 +29,16 @@ jobs:
 
       - name: Prepare lightweight full-story preview
         run: |
-          # Keep the whole 12-second story, but render every 3rd frame at half resolution.
-          # This is only for CI visual approval; the production branch stays full quality.
-          sed -i 's/scene.render.fps=24/scene.frame_step=3\nscene.render.fps=8/' blender3d/scene.py
-          sed -i 's/scene.render.resolution_x=720/scene.render.resolution_x=360/' blender3d/scene.py
-          sed -i 's/scene.render.resolution_y=1280/scene.render.resolution_y=640/' blender3d/scene.py
+          sed -i 's/scene.render.fps=24/scene.frame_step=3; scene.render.fps=8/' blender3d/scene_v4.py
+          sed -i 's/scene.render.resolution_x=720/scene.render.resolution_x=360/' blender3d/scene_v4.py
+          sed -i 's/scene.render.resolution_y=1280/scene.render.resolution_y=640/' blender3d/scene_v4.py
 
       - name: Render 3D sample
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
         run: |
           mkdir -p blender3d/out
-          blender -b --python blender3d/scene.py
+          blender -b --python blender3d/scene_v4.py
           test -s /tmp/kids-vehicle-3d.mp4
 
       - name: Build simple kids SFX track
