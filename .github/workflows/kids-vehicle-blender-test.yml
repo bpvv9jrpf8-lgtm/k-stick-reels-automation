@@ -27,6 +27,14 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y blender ffmpeg libegl1 libgl1 libglx-mesa0 libopengl0 mesa-utils
 
+      - name: Prepare lightweight full-story preview
+        run: |
+          # Keep the whole 12-second story, but render every 3rd frame at half resolution.
+          # This is only for CI visual approval; the production branch stays full quality.
+          sed -i 's/scene.render.fps=24/scene.frame_step=3\nscene.render.fps=8/' blender3d/scene.py
+          sed -i 's/scene.render.resolution_x=720/scene.render.resolution_x=360/' blender3d/scene.py
+          sed -i 's/scene.render.resolution_y=1280/scene.render.resolution_y=640/' blender3d/scene.py
+
       - name: Render 3D sample
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
