@@ -1,6 +1,5 @@
-name: Kids Vehicle Blender 3D Keyframe Test
+name: Kids Vehicle Premium 3D Motion Test
 
-# Fast final visual QA: render only four still frames before one full sample.
 on:
   workflow_dispatch:
   pull_request:
@@ -9,20 +8,17 @@ on:
       - '.github/workflows/kids-vehicle-blender-test.yml'
 
 jobs:
-  render-keyframes:
+  render-motion:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 18
     steps:
-      - name: Checkout Blender vehicle branch
+      - name: Checkout premium vehicle asset branch
         uses: actions/checkout@v4
         with:
-          ref: kids-vehicles-blender-v1
+          ref: kids-vehicle-assets-v1
 
       - name: Install Blender headless graphics libs
         run: |
-          # GitHub's Azure Ubuntu mirror occasionally stalls. Force the canonical
-          # Ubuntu mirror and use short network timeouts so CI fails fast instead
-          # of wasting the whole job timeout on package metadata.
           if [ -f /etc/apt/sources.list.d/ubuntu.sources ]; then
             sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list.d/ubuntu.sources
           fi
@@ -30,49 +26,33 @@ jobs:
             sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list
           fi
           sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update
-          sudo DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y --no-install-recommends blender libegl1 libgl1 libglx-mesa0 libopengl0
+          sudo DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y --no-install-recommends blender libegl1 libgl1 libglx-mesa0 libopengl0 ffmpeg
 
-      - name: Prepare final visual-lock preview
+      - name: Prepare fast 3-second preview
         run: |
           python - <<'PY'
           from pathlib import Path
-          p = Path('blender3d/scene_v5.py')
-          s = p.read_text()
-          # Keep the character design, but clean the staging: no foreground tree occlusion,
-          # smaller background helpers, a clearer rescue gap, and a more readable tow rope.
-          s = s.replace("(-7,-4,.7),(6.8,-3.8,.9)", "(-7,4.9,.7),(6.8,5.1,.9)")
-          s = s.replace("helper1=car('Dumpy',YELLOW,(5.2,2.30,.05),.62,'car'); helper2=car('Tracto',GREEN,(6.6,3.00,.05),.60,'car')",
-                        "helper1=car('Dumpy',YELLOW,(5.7,3.35,.05),.48,'car'); helper2=car('Tracto',GREEN,(7.0,3.85,.05),.46,'car')")
-          s = s.replace("key(reddy,145,(1.90,-.68,.08)); key(reddy,164,(1.90,-.68,.08))",
-                        "key(reddy,145,(2.25,-.68,.08)); key(reddy,164,(2.25,-.68,.08))")
-          s = s.replace("rope=cyl('rope',(.20,-.11,.61),.043,3.55,ORANGE", "rope=cyl('rope',(.34,-.11,.61),.060,3.75,ORANGE")
-          s = s.replace("cam.location=(10.8,-18.0,7.0); look_at(cam,(1.15,-.02,1.00))",
-                        "cam.location=(9.2,-15.4,6.25); look_at(cam,(0.65,-.02,1.00))")
-          s = s.replace("cam.location=(12.0,-20.0,7.8); look_at(cam,(3.0,-.03,1.0))",
-                        "cam.location=(10.6,-17.7,7.0); look_at(cam,(3.0,-.03,1.0))")
-          s = s.replace('scene.render.resolution_x=720', 'scene.render.resolution_x=360')
-          s = s.replace('scene.render.resolution_y=1280', 'scene.render.resolution_y=640')
-          old = "bpy.ops.render.render(animation=True)\nprint(scene.render.filepath)"
-          new = """scene.render.image_settings.file_format='PNG'\nimport os\nos.makedirs('blender3d/out/keyframes', exist_ok=True)\nfor f in (1, 88, 188, 260):\n    scene.frame_set(f)\n    scene.render.filepath=f'blender3d/out/keyframes/frame-{f:03d}.png'\n    bpy.ops.render.render(write_still=True)\n    print(scene.render.filepath)"""
-          if old not in s:
-              raise SystemExit('Expected render block not found')
-          p.write_text(s.replace(old, new))
+          p=Path('blender3d/asset_motion_test.py')
+          s=p.read_text()
+          s=s.replace('scene.render.resolution_x=540','scene.render.resolution_x=360')
+          s=s.replace('scene.render.resolution_y=960','scene.render.resolution_y=640')
+          s=s.replace('scene.frame_start=1; scene.frame_end=72; scene.render.fps=24',
+                      'scene.frame_start=1; scene.frame_end=72; scene.frame_step=2; scene.render.fps=12')
+          p.write_text(s)
           PY
 
-      - name: Render four keyframes only
+      - name: Render premium motion sample
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
         run: |
-          mkdir -p blender3d/out/keyframes
-          blender -b --python blender3d/scene_v5.py
-          test -s blender3d/out/keyframes/frame-001.png
-          test -s blender3d/out/keyframes/frame-088.png
-          test -s blender3d/out/keyframes/frame-188.png
-          test -s blender3d/out/keyframes/frame-260.png
+          blender -b --python blender3d/asset_motion_test.py
+          test -s /tmp/kids-vehicle-premium-motion.mp4
+          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 /tmp/kids-vehicle-premium-motion.mp4
+          cp /tmp/kids-vehicle-premium-motion.mp4 kids-vehicle-premium-motion.mp4
 
-      - name: Upload keyframe preview
+      - name: Upload premium motion sample
         uses: actions/upload-artifact@v4
         with:
-          name: kids-vehicle-final-keyframes
-          path: blender3d/out/keyframes/*.png
+          name: kids-vehicle-premium-motion-sample
+          path: kids-vehicle-premium-motion.mp4
           retention-days: 3
