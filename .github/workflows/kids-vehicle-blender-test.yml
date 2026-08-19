@@ -1,58 +1,59 @@
-name: Kids Vehicle Blender 3D Test
+name: Kids Vehicle Modeled Asset Motion Test
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/kids-vehicle-blender-test.yml'
   pull_request:
     branches: [main]
     paths:
       - '.github/workflows/kids-vehicle-blender-test.yml'
 
 jobs:
-  render:
+  render-motion:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 12
     steps:
-      - name: Checkout Blender vehicle branch
+      - name: Checkout modeled vehicle branch
         uses: actions/checkout@v4
         with:
-          ref: kids-vehicles-blender-v1
+          ref: kids-vehicle-assets-v1
 
-      - name: Install Blender and FFmpeg
+      - name: Download official Kenney Car Kit CC0
         run: |
-          sudo apt-get update
-          sudo apt-get install -y blender ffmpeg
+          curl -L --fail --retry 2 --connect-timeout 15 \
+            'https://www.kenney.nl/media/pages/assets/car-kit/1a312ec241-1775131960/kenney_car-kit.zip' \
+            -o car-kit.zip
+          unzip -q car-kit.zip -d car-kit
+          test -s 'car-kit/Models/GLB format/sedan.glb'
+          test -s 'car-kit/Models/GLB format/firetruck.glb'
 
-      - name: Render 3D sample
+      - name: Prepare ultra-fast preview
         run: |
-          mkdir -p blender3d/out
-          blender -b --python blender3d/scene.py
-          test -s /tmp/kids-vehicle-3d.mp4
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('blender3d/kenney_asset_motion_test.py')
+          s=p.read_text()
+          s=s.replace('scene.render.resolution_x=540','scene.render.resolution_x=270')
+          s=s.replace('scene.render.resolution_y=960','scene.render.resolution_y=480')
+          s=s.replace('scene.frame_start=1; scene.frame_end=72; scene.render.fps=24',
+                      'scene.frame_start=1; scene.frame_end=48; scene.frame_step=3; scene.render.fps=8')
+          s=s.replace("'/tmp/kids-vehicle-kenney-motion.mp4'", "'/work/kids-vehicle-modeled-motion.mp4'")
+          s=s.replace("'/tmp/kids_vehicle_kenney_asset_test.blend'", "'/work/kids_vehicle_kenney_asset_test.blend'")
+          p.write_text(s)
+          PY
 
-      - name: Build simple kids SFX track
+      - name: Render with prebuilt headless Blender container
         run: |
-          ffmpeg -y -f lavfi -i "sine=frequency=150:duration=12" \
-            -f lavfi -i "anoisesrc=color=brown:duration=1.0" \
-            -f lavfi -i "sine=frequency=560:duration=0.35" \
-            -filter_complex "[0:a]volume=0.08[a0];[1:a]lowpass=f=1200,volume=0.22,adelay=3000|3000[a1];[2:a]volume=0.25,adelay=10200|10200[a2];[a0][a1][a2]amix=inputs=3:normalize=0" \
-            -t 12 blender3d/out/sfx.wav
+          docker run --rm \
+            -v "$PWD:/work" \
+            -w /work \
+            blenderkit/headless-blender:multi-version \
+            /home/headless/blenders/4.3/blender -b --python blender3d/kenney_asset_motion_test.py
+          test -s kids-vehicle-modeled-motion.mp4
+          ls -lh kids-vehicle-modeled-motion.mp4
 
-      - name: Mix final audio
-        run: |
-          ffmpeg -y -i /tmp/kids-vehicle-3d.mp4 -i blender3d/out/sfx.wav \
-            -c:v copy -c:a aac -b:a 160k -shortest blender3d/out/kids-vehicle-3d-sample.mp4
-
-      - name: Verify final output
-        run: |
-          test -s blender3d/out/kids-vehicle-3d-sample.mp4
-          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 blender3d/out/kids-vehicle-3d-sample.mp4
-
-      - name: Upload 3D sample
+      - name: Upload modeled motion sample
         uses: actions/upload-artifact@v4
         with:
-          name: kids-vehicle-blender-3d-sample
-          path: blender3d/out/kids-vehicle-3d-sample.mp4
-          retention-days: 7
+          name: kids-vehicle-modeled-motion-sample
+          path: kids-vehicle-modeled-motion.mp4
+          retention-days: 3
