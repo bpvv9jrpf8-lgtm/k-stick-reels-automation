@@ -26,16 +26,17 @@ jobs:
           test -s 'car-kit/Models/GLB format/sedan.glb'
           test -s 'car-kit/Models/GLB format/firetruck.glb'
 
-      - name: Install portable Blender
+      - name: Install portable Blender and minimal headless dependency
         run: |
           curl -L --fail --retry 3 --connect-timeout 20 \
             'https://download.blender.org/release/Blender4.3/blender-4.3.2-linux-x64.tar.xz' \
             -o /tmp/blender.tar.xz
           mkdir -p /tmp/blender
           tar -xJf /tmp/blender.tar.xz -C /tmp/blender --strip-components=1
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends libegl1
           echo '/tmp/blender' >> "$GITHUB_PATH"
           /tmp/blender/blender --version | head -n 2
-          ffmpeg -version | head -n 1
+          ldconfig -p | grep -F 'libEGL.so.1'
 
       - name: Prepare fast 3-second preview
         run: |
@@ -56,8 +57,8 @@ jobs:
         run: |
           blender -b --python blender3d/kenney_asset_motion_test.py
           test -s /tmp/kids-vehicle-kenney-motion.mp4
-          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 /tmp/kids-vehicle-kenney-motion.mp4
           cp /tmp/kids-vehicle-kenney-motion.mp4 kids-vehicle-modeled-motion.mp4
+          ls -lh kids-vehicle-modeled-motion.mp4
 
       - name: Upload modeled motion sample
         uses: actions/upload-artifact@v4
