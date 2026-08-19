@@ -1,0 +1,204 @@
+{
+  "version": "1.0",
+  "format": "2 shorts per day; every 3 days compile 6 shorts into one long video",
+  "story_rule": ["problem", "action", "twist", "teamwork", "happy ending"],
+  "episodes": [
+    {
+      "id": "ep01",
+      "title": "Beep Gets Stuck in Mud",
+      "category": "rescue",
+      "duration_sec": 38,
+      "cast": ["Beep", "Reddy", "Dumpy"],
+      "human_support": [],
+      "hook": "OH NO, BEEP!",
+      "story": [
+        "Beep races down a muddy village road and splashes through a puddle.",
+        "His wheels sink into a deep mud patch and spin faster and faster.",
+        "Reddy arrives with a tow rope and tries to pull Beep free.",
+        "Dumpy pushes from behind, but pushes too hard and lands in the same mud.",
+        "Reddy carefully pulls both friends out and they celebrate together."
+      ],
+      "emotions": ["excited", "scared", "crying", "determined", "laughing", "relieved"],
+      "sfx": ["engine rev", "mud splash", "wheel spin", "little cry", "tow rope click", "pull strain", "boing", "happy horn", "cheer"],
+      "ending_twist": "Dumpy laughs at Beep, then gets stuck too."
+    },
+    {
+      "id": "ep02",
+      "title": "The Giant Pothole",
+      "category": "road_building",
+      "duration_sec": 42,
+      "cast": ["Reddy", "Dumpy", "Tracto"],
+      "human_support": ["Road Engineer"],
+      "hook": "ROAD CLOSED!",
+      "story": [
+        "The Road Engineer discovers a huge pothole blocking the school road.",
+        "Dumpy brings gravel while Tracto levels the loose ground.",
+        "Reddy keeps traffic safely stopped and guides the team.",
+        "Dumpy accidentally dumps a little too much gravel and creates a funny mountain.",
+        "The team spreads it flat and the repaired road opens with a happy horn parade."
+      ],
+      "emotions": ["worried", "focused", "surprised", "silly", "proud"],
+      "sfx": ["warning beep", "gravel dump", "tractor rumble", "shovel scrape", "boing", "road roller rumble", "horn parade"],
+      "ending_twist": "The gravel pile becomes a tiny ramp and Beep does a harmless little hop."
+    },
+    {
+      "id": "ep03",
+      "title": "Tracto Saves the Dry Farm",
+      "category": "farming",
+      "duration_sec": 40,
+      "cast": ["Tracto", "Dumpy", "Beep"],
+      "human_support": ["Farmer Uncle"],
+      "hook": "THE CROPS ARE THIRSTY!",
+      "story": [
+        "Farmer Uncle sees droopy plants under the hot sun.",
+        "Tracto opens irrigation rows while Dumpy brings fresh soil.",
+        "Beep rushes to fetch a small water trailer.",
+        "Beep turns too quickly and gives everyone a giant splash.",
+        "The water reaches the field, the plants perk up, and Farmer Uncle smiles."
+      ],
+      "emotions": ["sad", "determined", "excited", "shocked", "happy"],
+      "sfx": ["birds", "tractor engine", "dry wind", "water slosh", "big splash", "giggle", "soft success music"],
+      "ending_twist": "The rescue water sprays Tracto first, making him blink and laugh."
+    },
+    {
+      "id": "ep04",
+      "title": "Tiny Car, Big Hill",
+      "category": "offroad",
+      "duration_sec": 36,
+      "cast": ["Beep", "Towy", "Reddy"],
+      "human_support": ["Little Kid"],
+      "hook": "CAN BEEP CLIMB IT?",
+      "story": [
+        "Little Kid cheers as Beep tries to climb a steep dirt hill.",
+        "Beep makes it halfway, slips backward, and gets scared.",
+        "Towy attaches a safe tow line while Reddy spots from below.",
+        "Beep tries again slowly with Towy helping just enough.",
+        "They reach the top together and Little Kid waves proudly."
+      ],
+      "emotions": ["confident", "scared", "crying", "hopeful", "proud"],
+      "sfx": ["engine climb", "gravel slide", "brake squeak", "little sob", "tow hook click", "strain", "victory chime"],
+      "ending_twist": "At the top, Beep honks too loudly and startles himself."
+    },
+    {
+      "id": "ep05",
+      "title": "Reddy's Rainy Rescue",
+      "category": "rescue",
+      "duration_sec": 41,
+      "cast": ["Reddy", "Beep", "Towy"],
+      "human_support": ["Driver Mom"],
+      "hook": "SLIPPERY ROAD!",
+      "story": [
+        "Heavy rain makes a bend in the road slippery.",
+        "Driver Mom stops safely after her small car slides onto the soft shoulder.",
+        "Reddy blocks the lane with warning lights while Towy connects a tow line.",
+        "Beep arrives carrying safety cones but drops one that rolls away comically.",
+        "The car is pulled back onto the road and everyone leaves safely."
+      ],
+      "emotions": ["worried", "focused", "nervous", "funny", "relieved"],
+      "sfx": ["rain", "wipers", "soft siren", "cone roll", "tow winch", "tire grip", "relief chime"],
+      "ending_twist": "The runaway cone stops perfectly beside Beep like he planned it."
+    },
+    {
+      "id": "ep06",
+      "title": "Dumpy Builds a Tiny Bridge",
+      "category": "construction",
+      "duration_sec": 43,
+      "cast": ["Dumpy", "Tracto", "Reddy"],
+      "human_support": ["Road Engineer"],
+      "hook": "THE BRIDGE IS GONE!",
+      "story": [
+        "A small farm stream washes out the old wooden crossing.",
+        "Road Engineer plans a short safe replacement.",
+        "Dumpy brings stone, Tracto levels the base, and Reddy carries tools.",
+        "Dumpy accidentally drops one rock into the water and gets splashed head to bumper.",
+        "The new crossing opens and all the friends drive across slowly."
+      ],
+      "emotions": ["concerned", "busy", "surprised", "laughing", "proud"],
+      "sfx": ["stream water", "rocks clunk", "tractor rumble", "splash", "cartoon gasp", "construction taps", "cheer"],
+      "ending_twist": "The fish below splashes Dumpy one more time."
+    },
+    {
+      "id": "ep07",
+      "title": "The Lost Little Car",
+      "category": "emotional_rescue",
+      "duration_sec": 39,
+      "cast": ["Beep", "Reddy", "Tracto"],
+      "human_support": ["Little Kid"],
+      "hook": "WHERE DID HE GO?",
+      "story": [
+        "A tiny toy-like car character wanders down the wrong forest path.",
+        "Beep hears a small worried honk and follows the sound.",
+        "Reddy uses his lights while Tracto clears a fallen branch.",
+        "The little car is found hiding behind a bush and looks ready to cry.",
+        "Everyone escorts him back to Little Kid for a warm happy reunion."
+      ],
+      "emotions": ["worried", "curious", "scared", "crying", "comforted", "happy"],
+      "sfx": ["forest birds", "tiny horn", "leaf rustle", "branch crack", "sniff", "soft hug chime", "happy music"],
+      "ending_twist": "The little car gives the loudest tiny horn of the whole group."
+    },
+    {
+      "id": "ep08",
+      "title": "Mechanic Miku Fixes Beep",
+      "category": "repair_funny",
+      "duration_sec": 37,
+      "cast": ["Beep", "Towy", "Reddy"],
+      "human_support": ["Mechanic Miku"],
+      "hook": "BEEP CAN'T MOVE!",
+      "story": [
+        "Beep's tire goes flat on the way to a picnic.",
+        "Towy gently brings Beep to Mechanic Miku's workshop.",
+        "Miku checks the wheel while Reddy keeps Beep cheerful.",
+        "A loose hubcap rolls across the floor and everyone chases it in a silly circle.",
+        "Miku fits the repaired tire and Beep drives away smoothly."
+      ],
+      "emotions": ["sad", "hopeful", "confused", "laughing", "excited"],
+      "sfx": ["flat tire flap", "tow hook", "tool clicks", "rolling hubcap", "quick footsteps", "air pump", "success ding"],
+      "ending_twist": "The hubcap rolls back to Miku by itself at the end."
+    },
+    {
+      "id": "ep09",
+      "title": "The Runaway Hay Bale",
+      "category": "farming_funny",
+      "duration_sec": 40,
+      "cast": ["Tracto", "Beep", "Dumpy"],
+      "human_support": ["Farmer Uncle"],
+      "hook": "CATCH THAT HAY!",
+      "story": [
+        "Farmer Uncle stacks round hay bales beside the barn.",
+        "One bale starts rolling downhill toward the field gate.",
+        "Beep races beside it while Tracto takes a shortcut through the grass.",
+        "Dumpy positions his empty bed as a soft blocker but gets a face full of hay.",
+        "The bale stops safely and everyone laughs at Dumpy's new hay beard."
+      ],
+      "emotions": ["shocked", "excited", "determined", "silly", "laughing"],
+      "sfx": ["rolling rumble", "fast engine", "grass swish", "soft thump", "hay poof", "comedy whistle", "laugh"],
+      "ending_twist": "Dumpy proudly keeps the hay beard for one second before sneezing it away."
+    },
+    {
+      "id": "ep10",
+      "title": "Teamwork Clears the Mountain Road",
+      "category": "road_rescue",
+      "duration_sec": 44,
+      "cast": ["Reddy", "Dumpy", "Tracto", "Towy", "Beep"],
+      "human_support": ["Road Engineer"],
+      "hook": "BIG ROCKS AHEAD!",
+      "story": [
+        "A safe cartoon rockfall blocks the mountain road before morning traffic arrives.",
+        "Road Engineer closes the road and gives each vehicle a job.",
+        "Tracto pushes smaller rocks, Dumpy carries debris, and Towy moves a stuck branch.",
+        "Beep tries to carry one pebble, acts very serious, then drops it with a tiny plop.",
+        "Reddy checks the road, the team reopens it, and everyone celebrates at sunset."
+      ],
+      "emotions": ["serious", "focused", "proud", "funny", "happy"],
+      "sfx": ["warning bell", "rock scrape", "dump bed", "tow chain", "tiny plop", "road clear chime", "group horns"],
+      "ending_twist": "Beep celebrates like he moved the biggest rock."
+    }
+  ],
+  "compilations": [
+    {
+      "after_day": 3,
+      "episodes": ["ep01", "ep02", "ep03", "ep04", "ep05", "ep06"],
+      "title": "6 Big Truck & Car Adventures for Kids | Rescue, Road Building & Farm Fun"
+    }
+  ]
+}
