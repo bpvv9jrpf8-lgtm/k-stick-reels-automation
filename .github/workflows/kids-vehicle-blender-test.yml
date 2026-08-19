@@ -1,5 +1,6 @@
 name: Kids Vehicle Blender 3D Test
 
+# PR quality-check trigger
 on:
   workflow_dispatch:
   push:
