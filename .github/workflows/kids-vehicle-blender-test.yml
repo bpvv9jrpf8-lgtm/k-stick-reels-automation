@@ -26,16 +26,16 @@ jobs:
           test -s 'car-kit/Models/GLB format/sedan.glb'
           test -s 'car-kit/Models/GLB format/firetruck.glb'
 
-      - name: Install Blender headless graphics libs
+      - name: Install portable Blender
         run: |
-          if [ -f /etc/apt/sources.list.d/ubuntu.sources ]; then
-            sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list.d/ubuntu.sources
-          fi
-          if [ -f /etc/apt/sources.list ]; then
-            sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list
-          fi
-          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update
-          sudo DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y --no-install-recommends blender python3-numpy libegl1 libgl1 libglx-mesa0 libopengl0 ffmpeg
+          curl -L --fail --retry 3 --connect-timeout 20 \
+            'https://download.blender.org/release/Blender4.3/blender-4.3.2-linux-x64.tar.xz' \
+            -o /tmp/blender.tar.xz
+          mkdir -p /tmp/blender
+          tar -xJf /tmp/blender.tar.xz -C /tmp/blender --strip-components=1
+          echo '/tmp/blender' >> "$GITHUB_PATH"
+          /tmp/blender/blender --version | head -n 2
+          ffmpeg -version | head -n 1
 
       - name: Prepare fast 3-second preview
         run: |
