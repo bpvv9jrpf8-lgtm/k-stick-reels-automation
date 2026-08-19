@@ -1,0 +1,58 @@
+name: Kids Vehicle Blender 3D Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/kids-vehicle-blender-test.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/kids-vehicle-blender-test.yml'
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout Blender vehicle branch
+        uses: actions/checkout@v4
+        with:
+          ref: kids-vehicles-blender-v1
+
+      - name: Install Blender and FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y blender ffmpeg
+
+      - name: Render 3D sample
+        run: |
+          mkdir -p blender3d/out
+          blender -b --python blender3d/scene.py
+          test -s /tmp/kids-vehicle-3d.mp4
+
+      - name: Build simple kids SFX track
+        run: |
+          ffmpeg -y -f lavfi -i "sine=frequency=150:duration=12" \
+            -f lavfi -i "anoisesrc=color=brown:duration=1.0" \
+            -f lavfi -i "sine=frequency=560:duration=0.35" \
+            -filter_complex "[0:a]volume=0.08[a0];[1:a]lowpass=f=1200,volume=0.22,adelay=3000|3000[a1];[2:a]volume=0.25,adelay=10200|10200[a2];[a0][a1][a2]amix=inputs=3:normalize=0" \
+            -t 12 blender3d/out/sfx.wav
+
+      - name: Mix final audio
+        run: |
+          ffmpeg -y -i /tmp/kids-vehicle-3d.mp4 -i blender3d/out/sfx.wav \
+            -c:v copy -c:a aac -b:a 160k -shortest blender3d/out/kids-vehicle-3d-sample.mp4
+
+      - name: Verify final output
+        run: |
+          test -s blender3d/out/kids-vehicle-3d-sample.mp4
+          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 blender3d/out/kids-vehicle-3d-sample.mp4
+
+      - name: Upload 3D sample
+        uses: actions/upload-artifact@v4
+        with:
+          name: kids-vehicle-blender-3d-sample
+          path: blender3d/out/kids-vehicle-3d-sample.mp4
+          retention-days: 7
