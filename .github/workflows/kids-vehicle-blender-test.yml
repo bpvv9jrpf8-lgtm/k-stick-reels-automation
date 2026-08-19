@@ -1,67 +1,57 @@
-name: Kids Vehicle Blender 3D Test
+name: Kids Vehicle Blender 3D Keyframe Test
 
-# PR quality-check trigger
+# Fast visual QA: render only four still frames before spending minutes on full video.
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/kids-vehicle-blender-test.yml'
   pull_request:
     branches: [main]
     paths:
       - '.github/workflows/kids-vehicle-blender-test.yml'
 
 jobs:
-  render:
+  render-keyframes:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 12
     steps:
       - name: Checkout Blender vehicle branch
         uses: actions/checkout@v4
         with:
           ref: kids-vehicles-blender-v1
 
-      - name: Install Blender, FFmpeg and headless graphics libs
+      - name: Install Blender headless graphics libs
         run: |
           sudo apt-get update
-          sudo apt-get install -y blender ffmpeg libegl1 libgl1 libglx-mesa0 libopengl0 mesa-utils
+          sudo apt-get install -y blender libegl1 libgl1 libglx-mesa0 libopengl0 mesa-utils
 
-      - name: Prepare lightweight full-story preview
+      - name: Prepare fast keyframe preview
         run: |
-          sed -i 's/scene.render.fps=24/scene.frame_step=3; scene.render.fps=8/' blender3d/scene_v4.py
-          sed -i 's/scene.render.resolution_x=720/scene.render.resolution_x=360/' blender3d/scene_v4.py
-          sed -i 's/scene.render.resolution_y=1280/scene.render.resolution_y=640/' blender3d/scene_v4.py
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('blender3d/scene_v4.py')
+          s = p.read_text()
+          s = s.replace('scene.render.resolution_x=720', 'scene.render.resolution_x=360')
+          s = s.replace('scene.render.resolution_y=1280', 'scene.render.resolution_y=640')
+          old = "bpy.ops.render.render(animation=True)\nprint(scene.render.filepath)"
+          new = """scene.render.image_settings.file_format='PNG'\nimport os\nos.makedirs('blender3d/out/keyframes', exist_ok=True)\nfor f in (1, 88, 188, 260):\n    scene.frame_set(f)\n    scene.render.filepath=f'blender3d/out/keyframes/frame-{f:03d}.png'\n    bpy.ops.render.render(write_still=True)\n    print(scene.render.filepath)"""
+          if old not in s:
+              raise SystemExit('Expected render block not found')
+          p.write_text(s.replace(old, new))
+          PY
 
-      - name: Render 3D sample
+      - name: Render four keyframes only
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
         run: |
-          mkdir -p blender3d/out
+          mkdir -p blender3d/out/keyframes
           blender -b --python blender3d/scene_v4.py
-          test -s /tmp/kids-vehicle-3d.mp4
+          test -s blender3d/out/keyframes/frame-001.png
+          test -s blender3d/out/keyframes/frame-088.png
+          test -s blender3d/out/keyframes/frame-188.png
+          test -s blender3d/out/keyframes/frame-260.png
 
-      - name: Build simple kids SFX track
-        run: |
-          ffmpeg -y -f lavfi -i "sine=frequency=150:duration=12" \
-            -f lavfi -i "anoisesrc=color=brown:duration=1.0" \
-            -f lavfi -i "sine=frequency=560:duration=0.35" \
-            -filter_complex "[0:a]volume=0.08[a0];[1:a]lowpass=f=1200,volume=0.22,adelay=3000|3000[a1];[2:a]volume=0.25,adelay=10200|10200[a2];[a0][a1][a2]amix=inputs=3:normalize=0" \
-            -t 12 blender3d/out/sfx.wav
-
-      - name: Mix final audio
-        run: |
-          ffmpeg -y -i /tmp/kids-vehicle-3d.mp4 -i blender3d/out/sfx.wav \
-            -c:v copy -c:a aac -b:a 160k -shortest blender3d/out/kids-vehicle-3d-sample.mp4
-
-      - name: Verify final output
-        run: |
-          test -s blender3d/out/kids-vehicle-3d-sample.mp4
-          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 blender3d/out/kids-vehicle-3d-sample.mp4
-
-      - name: Upload 3D sample
+      - name: Upload keyframe preview
         uses: actions/upload-artifact@v4
         with:
-          name: kids-vehicle-blender-3d-sample
-          path: blender3d/out/kids-vehicle-3d-sample.mp4
-          retention-days: 7
+          name: kids-vehicle-v4-keyframes
+          path: blender3d/out/keyframes/*.png
+          retention-days: 3
