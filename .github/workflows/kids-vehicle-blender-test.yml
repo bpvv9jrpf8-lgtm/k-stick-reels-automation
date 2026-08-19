@@ -11,7 +11,7 @@ on:
 jobs:
   render-keyframes:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
     steps:
       - name: Checkout Blender vehicle branch
         uses: actions/checkout@v4
@@ -20,8 +20,17 @@ jobs:
 
       - name: Install Blender headless graphics libs
         run: |
-          sudo apt-get update
-          sudo apt-get install -y blender libegl1 libgl1 libglx-mesa0 libopengl0 mesa-utils
+          # GitHub's Azure Ubuntu mirror occasionally stalls. Force the canonical
+          # Ubuntu mirror and use short network timeouts so CI fails fast instead
+          # of wasting the whole job timeout on package metadata.
+          if [ -f /etc/apt/sources.list.d/ubuntu.sources ]; then
+            sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list.d/ubuntu.sources
+          fi
+          if [ -f /etc/apt/sources.list ]; then
+            sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list
+          fi
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y --no-install-recommends blender libegl1 libgl1 libglx-mesa0 libopengl0
 
       - name: Prepare final visual-lock preview
         run: |
